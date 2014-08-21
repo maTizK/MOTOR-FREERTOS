@@ -1,0 +1,2278 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 6
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"modbus_mk.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.rodata.table_crc_hi,"a",%progbits
+  20              		.align	2
+  23              	table_crc_hi:
+  24 0000 00       		.byte	0
+  25 0001 C1       		.byte	-63
+  26 0002 81       		.byte	-127
+  27 0003 40       		.byte	64
+  28 0004 01       		.byte	1
+  29 0005 C0       		.byte	-64
+  30 0006 80       		.byte	-128
+  31 0007 41       		.byte	65
+  32 0008 01       		.byte	1
+  33 0009 C0       		.byte	-64
+  34 000a 80       		.byte	-128
+  35 000b 41       		.byte	65
+  36 000c 00       		.byte	0
+  37 000d C1       		.byte	-63
+  38 000e 81       		.byte	-127
+  39 000f 40       		.byte	64
+  40 0010 01       		.byte	1
+  41 0011 C0       		.byte	-64
+  42 0012 80       		.byte	-128
+  43 0013 41       		.byte	65
+  44 0014 00       		.byte	0
+  45 0015 C1       		.byte	-63
+  46 0016 81       		.byte	-127
+  47 0017 40       		.byte	64
+  48 0018 00       		.byte	0
+  49 0019 C1       		.byte	-63
+  50 001a 81       		.byte	-127
+  51 001b 40       		.byte	64
+  52 001c 01       		.byte	1
+  53 001d C0       		.byte	-64
+  54 001e 80       		.byte	-128
+  55 001f 41       		.byte	65
+  56 0020 01       		.byte	1
+  57 0021 C0       		.byte	-64
+  58 0022 80       		.byte	-128
+  59 0023 41       		.byte	65
+  60 0024 00       		.byte	0
+  61 0025 C1       		.byte	-63
+  62 0026 81       		.byte	-127
+  63 0027 40       		.byte	64
+  64 0028 00       		.byte	0
+  65 0029 C1       		.byte	-63
+  66 002a 81       		.byte	-127
+  67 002b 40       		.byte	64
+  68 002c 01       		.byte	1
+  69 002d C0       		.byte	-64
+  70 002e 80       		.byte	-128
+  71 002f 41       		.byte	65
+  72 0030 00       		.byte	0
+  73 0031 C1       		.byte	-63
+  74 0032 81       		.byte	-127
+  75 0033 40       		.byte	64
+  76 0034 01       		.byte	1
+  77 0035 C0       		.byte	-64
+  78 0036 80       		.byte	-128
+  79 0037 41       		.byte	65
+  80 0038 01       		.byte	1
+  81 0039 C0       		.byte	-64
+  82 003a 80       		.byte	-128
+  83 003b 41       		.byte	65
+  84 003c 00       		.byte	0
+  85 003d C1       		.byte	-63
+  86 003e 81       		.byte	-127
+  87 003f 40       		.byte	64
+  88 0040 01       		.byte	1
+  89 0041 C0       		.byte	-64
+  90 0042 80       		.byte	-128
+  91 0043 41       		.byte	65
+  92 0044 00       		.byte	0
+  93 0045 C1       		.byte	-63
+  94 0046 81       		.byte	-127
+  95 0047 40       		.byte	64
+  96 0048 00       		.byte	0
+  97 0049 C1       		.byte	-63
+  98 004a 81       		.byte	-127
+  99 004b 40       		.byte	64
+ 100 004c 01       		.byte	1
+ 101 004d C0       		.byte	-64
+ 102 004e 80       		.byte	-128
+ 103 004f 41       		.byte	65
+ 104 0050 00       		.byte	0
+ 105 0051 C1       		.byte	-63
+ 106 0052 81       		.byte	-127
+ 107 0053 40       		.byte	64
+ 108 0054 01       		.byte	1
+ 109 0055 C0       		.byte	-64
+ 110 0056 80       		.byte	-128
+ 111 0057 41       		.byte	65
+ 112 0058 01       		.byte	1
+ 113 0059 C0       		.byte	-64
+ 114 005a 80       		.byte	-128
+ 115 005b 41       		.byte	65
+ 116 005c 00       		.byte	0
+ 117 005d C1       		.byte	-63
+ 118 005e 81       		.byte	-127
+ 119 005f 40       		.byte	64
+ 120 0060 00       		.byte	0
+ 121 0061 C1       		.byte	-63
+ 122 0062 81       		.byte	-127
+ 123 0063 40       		.byte	64
+ 124 0064 01       		.byte	1
+ 125 0065 C0       		.byte	-64
+ 126 0066 80       		.byte	-128
+ 127 0067 41       		.byte	65
+ 128 0068 01       		.byte	1
+ 129 0069 C0       		.byte	-64
+ 130 006a 80       		.byte	-128
+ 131 006b 41       		.byte	65
+ 132 006c 00       		.byte	0
+ 133 006d C1       		.byte	-63
+ 134 006e 81       		.byte	-127
+ 135 006f 40       		.byte	64
+ 136 0070 01       		.byte	1
+ 137 0071 C0       		.byte	-64
+ 138 0072 80       		.byte	-128
+ 139 0073 41       		.byte	65
+ 140 0074 00       		.byte	0
+ 141 0075 C1       		.byte	-63
+ 142 0076 81       		.byte	-127
+ 143 0077 40       		.byte	64
+ 144 0078 00       		.byte	0
+ 145 0079 C1       		.byte	-63
+ 146 007a 81       		.byte	-127
+ 147 007b 40       		.byte	64
+ 148 007c 01       		.byte	1
+ 149 007d C0       		.byte	-64
+ 150 007e 80       		.byte	-128
+ 151 007f 41       		.byte	65
+ 152 0080 01       		.byte	1
+ 153 0081 C0       		.byte	-64
+ 154 0082 80       		.byte	-128
+ 155 0083 41       		.byte	65
+ 156 0084 00       		.byte	0
+ 157 0085 C1       		.byte	-63
+ 158 0086 81       		.byte	-127
+ 159 0087 40       		.byte	64
+ 160 0088 00       		.byte	0
+ 161 0089 C1       		.byte	-63
+ 162 008a 81       		.byte	-127
+ 163 008b 40       		.byte	64
+ 164 008c 01       		.byte	1
+ 165 008d C0       		.byte	-64
+ 166 008e 80       		.byte	-128
+ 167 008f 41       		.byte	65
+ 168 0090 00       		.byte	0
+ 169 0091 C1       		.byte	-63
+ 170 0092 81       		.byte	-127
+ 171 0093 40       		.byte	64
+ 172 0094 01       		.byte	1
+ 173 0095 C0       		.byte	-64
+ 174 0096 80       		.byte	-128
+ 175 0097 41       		.byte	65
+ 176 0098 01       		.byte	1
+ 177 0099 C0       		.byte	-64
+ 178 009a 80       		.byte	-128
+ 179 009b 41       		.byte	65
+ 180 009c 00       		.byte	0
+ 181 009d C1       		.byte	-63
+ 182 009e 81       		.byte	-127
+ 183 009f 40       		.byte	64
+ 184 00a0 00       		.byte	0
+ 185 00a1 C1       		.byte	-63
+ 186 00a2 81       		.byte	-127
+ 187 00a3 40       		.byte	64
+ 188 00a4 01       		.byte	1
+ 189 00a5 C0       		.byte	-64
+ 190 00a6 80       		.byte	-128
+ 191 00a7 41       		.byte	65
+ 192 00a8 01       		.byte	1
+ 193 00a9 C0       		.byte	-64
+ 194 00aa 80       		.byte	-128
+ 195 00ab 41       		.byte	65
+ 196 00ac 00       		.byte	0
+ 197 00ad C1       		.byte	-63
+ 198 00ae 81       		.byte	-127
+ 199 00af 40       		.byte	64
+ 200 00b0 01       		.byte	1
+ 201 00b1 C0       		.byte	-64
+ 202 00b2 80       		.byte	-128
+ 203 00b3 41       		.byte	65
+ 204 00b4 00       		.byte	0
+ 205 00b5 C1       		.byte	-63
+ 206 00b6 81       		.byte	-127
+ 207 00b7 40       		.byte	64
+ 208 00b8 00       		.byte	0
+ 209 00b9 C1       		.byte	-63
+ 210 00ba 81       		.byte	-127
+ 211 00bb 40       		.byte	64
+ 212 00bc 01       		.byte	1
+ 213 00bd C0       		.byte	-64
+ 214 00be 80       		.byte	-128
+ 215 00bf 41       		.byte	65
+ 216 00c0 00       		.byte	0
+ 217 00c1 C1       		.byte	-63
+ 218 00c2 81       		.byte	-127
+ 219 00c3 40       		.byte	64
+ 220 00c4 01       		.byte	1
+ 221 00c5 C0       		.byte	-64
+ 222 00c6 80       		.byte	-128
+ 223 00c7 41       		.byte	65
+ 224 00c8 01       		.byte	1
+ 225 00c9 C0       		.byte	-64
+ 226 00ca 80       		.byte	-128
+ 227 00cb 41       		.byte	65
+ 228 00cc 00       		.byte	0
+ 229 00cd C1       		.byte	-63
+ 230 00ce 81       		.byte	-127
+ 231 00cf 40       		.byte	64
+ 232 00d0 01       		.byte	1
+ 233 00d1 C0       		.byte	-64
+ 234 00d2 80       		.byte	-128
+ 235 00d3 41       		.byte	65
+ 236 00d4 00       		.byte	0
+ 237 00d5 C1       		.byte	-63
+ 238 00d6 81       		.byte	-127
+ 239 00d7 40       		.byte	64
+ 240 00d8 00       		.byte	0
+ 241 00d9 C1       		.byte	-63
+ 242 00da 81       		.byte	-127
+ 243 00db 40       		.byte	64
+ 244 00dc 01       		.byte	1
+ 245 00dd C0       		.byte	-64
+ 246 00de 80       		.byte	-128
+ 247 00df 41       		.byte	65
+ 248 00e0 01       		.byte	1
+ 249 00e1 C0       		.byte	-64
+ 250 00e2 80       		.byte	-128
+ 251 00e3 41       		.byte	65
+ 252 00e4 00       		.byte	0
+ 253 00e5 C1       		.byte	-63
+ 254 00e6 81       		.byte	-127
+ 255 00e7 40       		.byte	64
+ 256 00e8 00       		.byte	0
+ 257 00e9 C1       		.byte	-63
+ 258 00ea 81       		.byte	-127
+ 259 00eb 40       		.byte	64
+ 260 00ec 01       		.byte	1
+ 261 00ed C0       		.byte	-64
+ 262 00ee 80       		.byte	-128
+ 263 00ef 41       		.byte	65
+ 264 00f0 00       		.byte	0
+ 265 00f1 C1       		.byte	-63
+ 266 00f2 81       		.byte	-127
+ 267 00f3 40       		.byte	64
+ 268 00f4 01       		.byte	1
+ 269 00f5 C0       		.byte	-64
+ 270 00f6 80       		.byte	-128
+ 271 00f7 41       		.byte	65
+ 272 00f8 01       		.byte	1
+ 273 00f9 C0       		.byte	-64
+ 274 00fa 80       		.byte	-128
+ 275 00fb 41       		.byte	65
+ 276 00fc 00       		.byte	0
+ 277 00fd C1       		.byte	-63
+ 278 00fe 81       		.byte	-127
+ 279 00ff 40       		.byte	64
+ 280              		.section	.rodata.table_crc_lo,"a",%progbits
+ 281              		.align	2
+ 284              	table_crc_lo:
+ 285 0000 00       		.byte	0
+ 286 0001 C0       		.byte	-64
+ 287 0002 C1       		.byte	-63
+ 288 0003 01       		.byte	1
+ 289 0004 C3       		.byte	-61
+ 290 0005 03       		.byte	3
+ 291 0006 02       		.byte	2
+ 292 0007 C2       		.byte	-62
+ 293 0008 C6       		.byte	-58
+ 294 0009 06       		.byte	6
+ 295 000a 07       		.byte	7
+ 296 000b C7       		.byte	-57
+ 297 000c 05       		.byte	5
+ 298 000d C5       		.byte	-59
+ 299 000e C4       		.byte	-60
+ 300 000f 04       		.byte	4
+ 301 0010 CC       		.byte	-52
+ 302 0011 0C       		.byte	12
+ 303 0012 0D       		.byte	13
+ 304 0013 CD       		.byte	-51
+ 305 0014 0F       		.byte	15
+ 306 0015 CF       		.byte	-49
+ 307 0016 CE       		.byte	-50
+ 308 0017 0E       		.byte	14
+ 309 0018 0A       		.byte	10
+ 310 0019 CA       		.byte	-54
+ 311 001a CB       		.byte	-53
+ 312 001b 0B       		.byte	11
+ 313 001c C9       		.byte	-55
+ 314 001d 09       		.byte	9
+ 315 001e 08       		.byte	8
+ 316 001f C8       		.byte	-56
+ 317 0020 D8       		.byte	-40
+ 318 0021 18       		.byte	24
+ 319 0022 19       		.byte	25
+ 320 0023 D9       		.byte	-39
+ 321 0024 1B       		.byte	27
+ 322 0025 DB       		.byte	-37
+ 323 0026 DA       		.byte	-38
+ 324 0027 1A       		.byte	26
+ 325 0028 1E       		.byte	30
+ 326 0029 DE       		.byte	-34
+ 327 002a DF       		.byte	-33
+ 328 002b 1F       		.byte	31
+ 329 002c DD       		.byte	-35
+ 330 002d 1D       		.byte	29
+ 331 002e 1C       		.byte	28
+ 332 002f DC       		.byte	-36
+ 333 0030 14       		.byte	20
+ 334 0031 D4       		.byte	-44
+ 335 0032 D5       		.byte	-43
+ 336 0033 15       		.byte	21
+ 337 0034 D7       		.byte	-41
+ 338 0035 17       		.byte	23
+ 339 0036 16       		.byte	22
+ 340 0037 D6       		.byte	-42
+ 341 0038 D2       		.byte	-46
+ 342 0039 12       		.byte	18
+ 343 003a 13       		.byte	19
+ 344 003b D3       		.byte	-45
+ 345 003c 11       		.byte	17
+ 346 003d D1       		.byte	-47
+ 347 003e D0       		.byte	-48
+ 348 003f 10       		.byte	16
+ 349 0040 F0       		.byte	-16
+ 350 0041 30       		.byte	48
+ 351 0042 31       		.byte	49
+ 352 0043 F1       		.byte	-15
+ 353 0044 33       		.byte	51
+ 354 0045 F3       		.byte	-13
+ 355 0046 F2       		.byte	-14
+ 356 0047 32       		.byte	50
+ 357 0048 36       		.byte	54
+ 358 0049 F6       		.byte	-10
+ 359 004a F7       		.byte	-9
+ 360 004b 37       		.byte	55
+ 361 004c F5       		.byte	-11
+ 362 004d 35       		.byte	53
+ 363 004e 34       		.byte	52
+ 364 004f F4       		.byte	-12
+ 365 0050 3C       		.byte	60
+ 366 0051 FC       		.byte	-4
+ 367 0052 FD       		.byte	-3
+ 368 0053 3D       		.byte	61
+ 369 0054 FF       		.byte	-1
+ 370 0055 3F       		.byte	63
+ 371 0056 3E       		.byte	62
+ 372 0057 FE       		.byte	-2
+ 373 0058 FA       		.byte	-6
+ 374 0059 3A       		.byte	58
+ 375 005a 3B       		.byte	59
+ 376 005b FB       		.byte	-5
+ 377 005c 39       		.byte	57
+ 378 005d F9       		.byte	-7
+ 379 005e F8       		.byte	-8
+ 380 005f 38       		.byte	56
+ 381 0060 28       		.byte	40
+ 382 0061 E8       		.byte	-24
+ 383 0062 E9       		.byte	-23
+ 384 0063 29       		.byte	41
+ 385 0064 EB       		.byte	-21
+ 386 0065 2B       		.byte	43
+ 387 0066 2A       		.byte	42
+ 388 0067 EA       		.byte	-22
+ 389 0068 EE       		.byte	-18
+ 390 0069 2E       		.byte	46
+ 391 006a 2F       		.byte	47
+ 392 006b EF       		.byte	-17
+ 393 006c 2D       		.byte	45
+ 394 006d ED       		.byte	-19
+ 395 006e EC       		.byte	-20
+ 396 006f 2C       		.byte	44
+ 397 0070 E4       		.byte	-28
+ 398 0071 24       		.byte	36
+ 399 0072 25       		.byte	37
+ 400 0073 E5       		.byte	-27
+ 401 0074 27       		.byte	39
+ 402 0075 E7       		.byte	-25
+ 403 0076 E6       		.byte	-26
+ 404 0077 26       		.byte	38
+ 405 0078 22       		.byte	34
+ 406 0079 E2       		.byte	-30
+ 407 007a E3       		.byte	-29
+ 408 007b 23       		.byte	35
+ 409 007c E1       		.byte	-31
+ 410 007d 21       		.byte	33
+ 411 007e 20       		.byte	32
+ 412 007f E0       		.byte	-32
+ 413 0080 A0       		.byte	-96
+ 414 0081 60       		.byte	96
+ 415 0082 61       		.byte	97
+ 416 0083 A1       		.byte	-95
+ 417 0084 63       		.byte	99
+ 418 0085 A3       		.byte	-93
+ 419 0086 A2       		.byte	-94
+ 420 0087 62       		.byte	98
+ 421 0088 66       		.byte	102
+ 422 0089 A6       		.byte	-90
+ 423 008a A7       		.byte	-89
+ 424 008b 67       		.byte	103
+ 425 008c A5       		.byte	-91
+ 426 008d 65       		.byte	101
+ 427 008e 64       		.byte	100
+ 428 008f A4       		.byte	-92
+ 429 0090 6C       		.byte	108
+ 430 0091 AC       		.byte	-84
+ 431 0092 AD       		.byte	-83
+ 432 0093 6D       		.byte	109
+ 433 0094 AF       		.byte	-81
+ 434 0095 6F       		.byte	111
+ 435 0096 6E       		.byte	110
+ 436 0097 AE       		.byte	-82
+ 437 0098 AA       		.byte	-86
+ 438 0099 6A       		.byte	106
+ 439 009a 6B       		.byte	107
+ 440 009b AB       		.byte	-85
+ 441 009c 69       		.byte	105
+ 442 009d A9       		.byte	-87
+ 443 009e A8       		.byte	-88
+ 444 009f 68       		.byte	104
+ 445 00a0 78       		.byte	120
+ 446 00a1 B8       		.byte	-72
+ 447 00a2 B9       		.byte	-71
+ 448 00a3 79       		.byte	121
+ 449 00a4 BB       		.byte	-69
+ 450 00a5 7B       		.byte	123
+ 451 00a6 7A       		.byte	122
+ 452 00a7 BA       		.byte	-70
+ 453 00a8 BE       		.byte	-66
+ 454 00a9 7E       		.byte	126
+ 455 00aa 7F       		.byte	127
+ 456 00ab BF       		.byte	-65
+ 457 00ac 7D       		.byte	125
+ 458 00ad BD       		.byte	-67
+ 459 00ae BC       		.byte	-68
+ 460 00af 7C       		.byte	124
+ 461 00b0 B4       		.byte	-76
+ 462 00b1 74       		.byte	116
+ 463 00b2 75       		.byte	117
+ 464 00b3 B5       		.byte	-75
+ 465 00b4 77       		.byte	119
+ 466 00b5 B7       		.byte	-73
+ 467 00b6 B6       		.byte	-74
+ 468 00b7 76       		.byte	118
+ 469 00b8 72       		.byte	114
+ 470 00b9 B2       		.byte	-78
+ 471 00ba B3       		.byte	-77
+ 472 00bb 73       		.byte	115
+ 473 00bc B1       		.byte	-79
+ 474 00bd 71       		.byte	113
+ 475 00be 70       		.byte	112
+ 476 00bf B0       		.byte	-80
+ 477 00c0 50       		.byte	80
+ 478 00c1 90       		.byte	-112
+ 479 00c2 91       		.byte	-111
+ 480 00c3 51       		.byte	81
+ 481 00c4 93       		.byte	-109
+ 482 00c5 53       		.byte	83
+ 483 00c6 52       		.byte	82
+ 484 00c7 92       		.byte	-110
+ 485 00c8 96       		.byte	-106
+ 486 00c9 56       		.byte	86
+ 487 00ca 57       		.byte	87
+ 488 00cb 97       		.byte	-105
+ 489 00cc 55       		.byte	85
+ 490 00cd 95       		.byte	-107
+ 491 00ce 94       		.byte	-108
+ 492 00cf 54       		.byte	84
+ 493 00d0 9C       		.byte	-100
+ 494 00d1 5C       		.byte	92
+ 495 00d2 5D       		.byte	93
+ 496 00d3 9D       		.byte	-99
+ 497 00d4 5F       		.byte	95
+ 498 00d5 9F       		.byte	-97
+ 499 00d6 9E       		.byte	-98
+ 500 00d7 5E       		.byte	94
+ 501 00d8 5A       		.byte	90
+ 502 00d9 9A       		.byte	-102
+ 503 00da 9B       		.byte	-101
+ 504 00db 5B       		.byte	91
+ 505 00dc 99       		.byte	-103
+ 506 00dd 59       		.byte	89
+ 507 00de 58       		.byte	88
+ 508 00df 98       		.byte	-104
+ 509 00e0 88       		.byte	-120
+ 510 00e1 48       		.byte	72
+ 511 00e2 49       		.byte	73
+ 512 00e3 89       		.byte	-119
+ 513 00e4 4B       		.byte	75
+ 514 00e5 8B       		.byte	-117
+ 515 00e6 8A       		.byte	-118
+ 516 00e7 4A       		.byte	74
+ 517 00e8 4E       		.byte	78
+ 518 00e9 8E       		.byte	-114
+ 519 00ea 8F       		.byte	-113
+ 520 00eb 4F       		.byte	79
+ 521 00ec 8D       		.byte	-115
+ 522 00ed 4D       		.byte	77
+ 523 00ee 4C       		.byte	76
+ 524 00ef 8C       		.byte	-116
+ 525 00f0 44       		.byte	68
+ 526 00f1 84       		.byte	-124
+ 527 00f2 85       		.byte	-123
+ 528 00f3 45       		.byte	69
+ 529 00f4 87       		.byte	-121
+ 530 00f5 47       		.byte	71
+ 531 00f6 46       		.byte	70
+ 532 00f7 86       		.byte	-122
+ 533 00f8 82       		.byte	-126
+ 534 00f9 42       		.byte	66
+ 535 00fa 43       		.byte	67
+ 536 00fb 83       		.byte	-125
+ 537 00fc 41       		.byte	65
+ 538 00fd 81       		.byte	-127
+ 539 00fe 80       		.byte	-128
+ 540 00ff 40       		.byte	64
+ 541              		.comm	fd,4,4
+ 542              		.comm	received_string,129,4
+ 543              		.section	.text.init_USART1,"ax",%progbits
+ 544              		.align	2
+ 545              		.global	init_USART1
+ 546              		.thumb
+ 547              		.thumb_func
+ 549              	init_USART1:
+ 550              	.LFB110:
+ 551              		.file 1 "App/STM32F4-Discovery/modbus_mk.c"
+   1:App/STM32F4-Discovery/modbus_mk.c **** #include "modbus_mk.h"
+   2:App/STM32F4-Discovery/modbus_mk.c **** 
+   3:App/STM32F4-Discovery/modbus_mk.c **** 
+   4:App/STM32F4-Discovery/modbus_mk.c **** /* This funcion initializes the USART1 peripheral
+   5:App/STM32F4-Discovery/modbus_mk.c ****  * 
+   6:App/STM32F4-Discovery/modbus_mk.c ****  * Arguments: baudrate --> the baudrate at which the USART is 
+   7:App/STM32F4-Discovery/modbus_mk.c ****  * 						   supposed to operate
+   8:App/STM32F4-Discovery/modbus_mk.c ****  */
+   9:App/STM32F4-Discovery/modbus_mk.c **** void init_USART1(void)
+  10:App/STM32F4-Discovery/modbus_mk.c **** {
+ 552              		.loc 1 10 0
+ 553              		.cfi_startproc
+ 554              		@ args = 0, pretend = 0, frame = 32
+ 555              		@ frame_needed = 1, uses_anonymous_args = 0
+ 556 0000 80B5     		push	{r7, lr}
+ 557              	.LCFI0:
+ 558              		.cfi_def_cfa_offset 8
+ 559              		.cfi_offset 7, -8
+ 560              		.cfi_offset 14, -4
+ 561 0002 88B0     		sub	sp, sp, #32
+ 562              	.LCFI1:
+ 563              		.cfi_def_cfa_offset 40
+ 564 0004 00AF     		add	r7, sp, #0
+ 565              	.LCFI2:
+ 566              		.cfi_def_cfa_register 7
+  11:App/STM32F4-Discovery/modbus_mk.c **** 	
+  12:App/STM32F4-Discovery/modbus_mk.c **** 	
+  13:App/STM32F4-Discovery/modbus_mk.c **** 	GPIO_InitTypeDef GPIO_InitStruct; // this is for the GPIO pins used as TX and RX
+  14:App/STM32F4-Discovery/modbus_mk.c **** 	USART_InitTypeDef USART_InitStruct; // this is for the USART1 initilization
+  15:App/STM32F4-Discovery/modbus_mk.c **** 	NVIC_InitTypeDef NVIC_InitStructure; // this is used to configure the NVIC (nested vector interrup
+  16:App/STM32F4-Discovery/modbus_mk.c **** 	
+  17:App/STM32F4-Discovery/modbus_mk.c **** 	/* enable APB2 peripheral clock for USART1 
+  18:App/STM32F4-Discovery/modbus_mk.c **** 	 * note that only USART1 and USART6 are connected to APB2
+  19:App/STM32F4-Discovery/modbus_mk.c **** 	 * the other USARTs are connected to APB1
+  20:App/STM32F4-Discovery/modbus_mk.c **** 	 */
+  21:App/STM32F4-Discovery/modbus_mk.c **** 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+ 567              		.loc 1 21 0
+ 568 0006 1020     		movs	r0, #16
+ 569 0008 0121     		movs	r1, #1
+ 570 000a FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  22:App/STM32F4-Discovery/modbus_mk.c **** 	
+  23:App/STM32F4-Discovery/modbus_mk.c **** 	/* enable the peripheral clock for the pins used by 
+  24:App/STM32F4-Discovery/modbus_mk.c **** 	 * USART1, PB6 for TX and PB7 for RX
+  25:App/STM32F4-Discovery/modbus_mk.c **** 	 */
+  26:App/STM32F4-Discovery/modbus_mk.c **** 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+ 571              		.loc 1 26 0
+ 572 000e 0220     		movs	r0, #2
+ 573 0010 0121     		movs	r1, #1
+ 574 0012 FFF7FEFF 		bl	RCC_AHB1PeriphClockCmd
+  27:App/STM32F4-Discovery/modbus_mk.c **** 	
+  28:App/STM32F4-Discovery/modbus_mk.c **** 	/* This sequence sets up the TX and RX pins 
+  29:App/STM32F4-Discovery/modbus_mk.c **** 	 * so they work correctly with the USART1 peripheral
+  30:App/STM32F4-Discovery/modbus_mk.c **** 	 */
+  31:App/STM32F4-Discovery/modbus_mk.c **** 	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7; // Pins 6 (TX) and 7 (RX) are used
+ 575              		.loc 1 31 0
+ 576 0016 C023     		movs	r3, #192
+ 577 0018 BB61     		str	r3, [r7, #24]
+  32:App/STM32F4-Discovery/modbus_mk.c **** 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF; 			// the pins are configured as alternate function so t
+ 578              		.loc 1 32 0
+ 579 001a 0223     		movs	r3, #2
+ 580 001c 3B77     		strb	r3, [r7, #28]
+  33:App/STM32F4-Discovery/modbus_mk.c **** 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;		// this defines the IO speed and has nothing to do
+ 581              		.loc 1 33 0
+ 582 001e 0223     		movs	r3, #2
+ 583 0020 7B77     		strb	r3, [r7, #29]
+  34:App/STM32F4-Discovery/modbus_mk.c **** 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;			// this defines the output type as push pull mode (a
+ 584              		.loc 1 34 0
+ 585 0022 0023     		movs	r3, #0
+ 586 0024 BB77     		strb	r3, [r7, #30]
+  35:App/STM32F4-Discovery/modbus_mk.c **** 	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			// this activates the pullup resistors on the IO pins
+ 587              		.loc 1 35 0
+ 588 0026 0123     		movs	r3, #1
+ 589 0028 FB77     		strb	r3, [r7, #31]
+  36:App/STM32F4-Discovery/modbus_mk.c **** 	GPIO_Init(GPIOB, &GPIO_InitStruct);					// now all the values are passed to the GPIO_Init() functi
+ 590              		.loc 1 36 0
+ 591 002a 07F11803 		add	r3, r7, #24
+ 592 002e 1D48     		ldr	r0, .L2
+ 593 0030 1946     		mov	r1, r3
+ 594 0032 FFF7FEFF 		bl	GPIO_Init
+  37:App/STM32F4-Discovery/modbus_mk.c **** 	
+  38:App/STM32F4-Discovery/modbus_mk.c **** 	/* The RX and TX pins are now connected to their AF
+  39:App/STM32F4-Discovery/modbus_mk.c **** 	 * so that the USART1 can take over control of the 
+  40:App/STM32F4-Discovery/modbus_mk.c **** 	 * pins
+  41:App/STM32F4-Discovery/modbus_mk.c **** 	 */
+  42:App/STM32F4-Discovery/modbus_mk.c **** 	GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_USART1); //
+ 595              		.loc 1 42 0
+ 596 0036 1B48     		ldr	r0, .L2
+ 597 0038 0621     		movs	r1, #6
+ 598 003a 0722     		movs	r2, #7
+ 599 003c FFF7FEFF 		bl	GPIO_PinAFConfig
+  43:App/STM32F4-Discovery/modbus_mk.c **** 	GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_USART1);
+ 600              		.loc 1 43 0
+ 601 0040 1848     		ldr	r0, .L2
+ 602 0042 0721     		movs	r1, #7
+ 603 0044 0722     		movs	r2, #7
+ 604 0046 FFF7FEFF 		bl	GPIO_PinAFConfig
+  44:App/STM32F4-Discovery/modbus_mk.c **** 	
+  45:App/STM32F4-Discovery/modbus_mk.c **** 	/* Now the USART_InitStruct is used to define the 
+  46:App/STM32F4-Discovery/modbus_mk.c **** 	 * properties of USART1 
+  47:App/STM32F4-Discovery/modbus_mk.c **** 	 */
+  48:App/STM32F4-Discovery/modbus_mk.c **** 	USART_InitStruct.USART_BaudRate = 38400;				// the baudrate is set to the value we passed into thi
+ 605              		.loc 1 48 0
+ 606 004a 4FF41643 		mov	r3, #38400
+ 607 004e BB60     		str	r3, [r7, #8]
+  49:App/STM32F4-Discovery/modbus_mk.c **** 	USART_InitStruct.USART_WordLength = USART_WordLength_8b;// we want the data frame size to be 8 bit
+ 608              		.loc 1 49 0
+ 609 0050 0023     		movs	r3, #0
+ 610 0052 BB81     		strh	r3, [r7, #12]	@ movhi
+  50:App/STM32F4-Discovery/modbus_mk.c **** 	USART_InitStruct.USART_StopBits = USART_StopBits_1;		// we want 1 stop bit (standard)
+ 611              		.loc 1 50 0
+ 612 0054 0023     		movs	r3, #0
+ 613 0056 FB81     		strh	r3, [r7, #14]	@ movhi
+  51:App/STM32F4-Discovery/modbus_mk.c **** 	USART_InitStruct.USART_Parity = USART_Parity_No;		// we don't want a parity bit (standard)
+ 614              		.loc 1 51 0
+ 615 0058 0023     		movs	r3, #0
+ 616 005a 3B82     		strh	r3, [r7, #16]	@ movhi
+  52:App/STM32F4-Discovery/modbus_mk.c **** 	USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None; // we don't want flow
+ 617              		.loc 1 52 0
+ 618 005c 0023     		movs	r3, #0
+ 619 005e BB82     		strh	r3, [r7, #20]	@ movhi
+  53:App/STM32F4-Discovery/modbus_mk.c **** 	USART_InitStruct.USART_Mode = USART_Mode_Tx | USART_Mode_Rx; // we want to enable the transmitter 
+ 620              		.loc 1 53 0
+ 621 0060 0C23     		movs	r3, #12
+ 622 0062 7B82     		strh	r3, [r7, #18]	@ movhi
+  54:App/STM32F4-Discovery/modbus_mk.c **** 	USART_Init(USART1, &USART_InitStruct);					// again all the properties are passed to the USART_Ini
+ 623              		.loc 1 54 0
+ 624 0064 07F10803 		add	r3, r7, #8
+ 625 0068 0F48     		ldr	r0, .L2+4
+ 626 006a 1946     		mov	r1, r3
+ 627 006c FFF7FEFF 		bl	USART_Init
+  55:App/STM32F4-Discovery/modbus_mk.c **** 	
+  56:App/STM32F4-Discovery/modbus_mk.c **** 	
+  57:App/STM32F4-Discovery/modbus_mk.c **** 	/* Here the USART1 receive interrupt is enabled
+  58:App/STM32F4-Discovery/modbus_mk.c **** 	 * and the interrupt controller is configured 
+  59:App/STM32F4-Discovery/modbus_mk.c **** 	 * to jump to the USART1_IRQHandler() function
+  60:App/STM32F4-Discovery/modbus_mk.c **** 	 * if the USART1 receive interrupt occurs
+  61:App/STM32F4-Discovery/modbus_mk.c **** 	 */
+  62:App/STM32F4-Discovery/modbus_mk.c **** 	USART_ITConfig(USARTx, USART_IT_RXNE, ENABLE); // enable the USART1 receive interrupt 
+ 628              		.loc 1 62 0
+ 629 0070 0D48     		ldr	r0, .L2+4
+ 630 0072 40F22551 		movw	r1, #1317
+ 631 0076 0122     		movs	r2, #1
+ 632 0078 FFF7FEFF 		bl	USART_ITConfig
+  63:App/STM32F4-Discovery/modbus_mk.c **** 	
+  64:App/STM32F4-Discovery/modbus_mk.c **** 	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;		 // we want to configure the USART1 interrupts
+ 633              		.loc 1 64 0
+ 634 007c 2523     		movs	r3, #37
+ 635 007e 3B71     		strb	r3, [r7, #4]
+  65:App/STM32F4-Discovery/modbus_mk.c **** 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;// this sets the priority group of the US
+ 636              		.loc 1 65 0
+ 637 0080 0023     		movs	r3, #0
+ 638 0082 7B71     		strb	r3, [r7, #5]
+  66:App/STM32F4-Discovery/modbus_mk.c **** 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;		 // this sets the subpriority inside the group
+ 639              		.loc 1 66 0
+ 640 0084 0023     		movs	r3, #0
+ 641 0086 BB71     		strb	r3, [r7, #6]
+  67:App/STM32F4-Discovery/modbus_mk.c **** 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			 // the USART1 interrupts are globally enabled
+ 642              		.loc 1 67 0
+ 643 0088 0123     		movs	r3, #1
+ 644 008a FB71     		strb	r3, [r7, #7]
+  68:App/STM32F4-Discovery/modbus_mk.c **** 	NVIC_Init(&NVIC_InitStructure);	 // the properties are passed to the NVIC_Init function which take
+ 645              		.loc 1 68 0
+ 646 008c 3B1D     		adds	r3, r7, #4
+ 647 008e 1846     		mov	r0, r3
+ 648 0090 FFF7FEFF 		bl	NVIC_Init
+  69:App/STM32F4-Discovery/modbus_mk.c **** 
+  70:App/STM32F4-Discovery/modbus_mk.c **** 	// finally this enables the complete USART1 peripheral
+  71:App/STM32F4-Discovery/modbus_mk.c **** 	USART_Cmd(USART1, ENABLE);
+ 649              		.loc 1 71 0
+ 650 0094 0448     		ldr	r0, .L2+4
+ 651 0096 0121     		movs	r1, #1
+ 652 0098 FFF7FEFF 		bl	USART_Cmd
+  72:App/STM32F4-Discovery/modbus_mk.c **** }
+ 653              		.loc 1 72 0
+ 654 009c 2037     		adds	r7, r7, #32
+ 655 009e BD46     		mov	sp, r7
+ 656              		@ sp needed
+ 657 00a0 80BD     		pop	{r7, pc}
+ 658              	.L3:
+ 659 00a2 00BF     		.align	2
+ 660              	.L2:
+ 661 00a4 00040240 		.word	1073873920
+ 662 00a8 00100140 		.word	1073811456
+ 663              		.cfi_endproc
+ 664              	.LFE110:
+ 666              		.section	.text.USART_puts,"ax",%progbits
+ 667              		.align	2
+ 668              		.global	USART_puts
+ 669              		.thumb
+ 670              		.thumb_func
+ 672              	USART_puts:
+ 673              	.LFB111:
+  73:App/STM32F4-Discovery/modbus_mk.c **** 
+  74:App/STM32F4-Discovery/modbus_mk.c **** 
+  75:App/STM32F4-Discovery/modbus_mk.c **** /* This function is used to transmit a string of characters via 
+  76:App/STM32F4-Discovery/modbus_mk.c ****  * the USART specified in USARTx.
+  77:App/STM32F4-Discovery/modbus_mk.c ****  * 
+  78:App/STM32F4-Discovery/modbus_mk.c ****  * It takes two arguments: USARTx --> can be any of the USARTs e.g. USART1, USART2 etc.
+  79:App/STM32F4-Discovery/modbus_mk.c ****  * 						   (volatile) char *s is the string you want to send
+  80:App/STM32F4-Discovery/modbus_mk.c ****  * 
+  81:App/STM32F4-Discovery/modbus_mk.c ****  * Note: The string has to be passed to the function as a pointer because
+  82:App/STM32F4-Discovery/modbus_mk.c ****  * 		 the compiler doesn't know the 'string' data type. In standard
+  83:App/STM32F4-Discovery/modbus_mk.c ****  * 		 C a string is just an array of characters
+  84:App/STM32F4-Discovery/modbus_mk.c ****  * 
+  85:App/STM32F4-Discovery/modbus_mk.c ****  * Note 2: At the moment it takes a volatile char because the received_string variable
+  86:App/STM32F4-Discovery/modbus_mk.c ****  * 		   declared as volatile char --> otherwise the compiler will spit out warnings
+  87:App/STM32F4-Discovery/modbus_mk.c ****  * */
+  88:App/STM32F4-Discovery/modbus_mk.c **** void USART_puts(uint8_t *s)
+  89:App/STM32F4-Discovery/modbus_mk.c **** {
+ 674              		.loc 1 89 0
+ 675              		.cfi_startproc
+ 676              		@ args = 0, pretend = 0, frame = 8
+ 677              		@ frame_needed = 1, uses_anonymous_args = 0
+ 678 0000 80B5     		push	{r7, lr}
+ 679              	.LCFI3:
+ 680              		.cfi_def_cfa_offset 8
+ 681              		.cfi_offset 7, -8
+ 682              		.cfi_offset 14, -4
+ 683 0002 82B0     		sub	sp, sp, #8
+ 684              	.LCFI4:
+ 685              		.cfi_def_cfa_offset 16
+ 686 0004 00AF     		add	r7, sp, #0
+ 687              	.LCFI5:
+ 688              		.cfi_def_cfa_register 7
+ 689 0006 7860     		str	r0, [r7, #4]
+  90:App/STM32F4-Discovery/modbus_mk.c **** 
+  91:App/STM32F4-Discovery/modbus_mk.c **** 	while(*s){
+ 690              		.loc 1 91 0
+ 691 0008 10E0     		b	.L5
+ 692              	.L7:
+  92:App/STM32F4-Discovery/modbus_mk.c **** 		// wait until data register is empty
+  93:App/STM32F4-Discovery/modbus_mk.c **** 		while( !(USARTx->SR & 0x00000040) ); 
+ 693              		.loc 1 93 0
+ 694 000a 00BF     		nop
+ 695              	.L6:
+ 696              		.loc 1 93 0 is_stmt 0 discriminator 1
+ 697 000c 0B4B     		ldr	r3, .L8
+ 698 000e 1B88     		ldrh	r3, [r3]	@ movhi
+ 699 0010 9BB2     		uxth	r3, r3
+ 700 0012 03F04003 		and	r3, r3, #64
+ 701 0016 002B     		cmp	r3, #0
+ 702 0018 F8D0     		beq	.L6
+  94:App/STM32F4-Discovery/modbus_mk.c **** 		USART_SendData(USARTx, *s);
+ 703              		.loc 1 94 0 is_stmt 1
+ 704 001a 7B68     		ldr	r3, [r7, #4]
+ 705 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 706 001e 0748     		ldr	r0, .L8
+ 707 0020 1946     		mov	r1, r3
+ 708 0022 FFF7FEFF 		bl	USART_SendData
+  95:App/STM32F4-Discovery/modbus_mk.c **** 		*s++;
+ 709              		.loc 1 95 0
+ 710 0026 7B68     		ldr	r3, [r7, #4]
+ 711 0028 0133     		adds	r3, r3, #1
+ 712 002a 7B60     		str	r3, [r7, #4]
+ 713              	.L5:
+  91:App/STM32F4-Discovery/modbus_mk.c **** 	while(*s){
+ 714              		.loc 1 91 0 discriminator 1
+ 715 002c 7B68     		ldr	r3, [r7, #4]
+ 716 002e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 717 0030 002B     		cmp	r3, #0
+ 718 0032 EAD1     		bne	.L7
+  96:App/STM32F4-Discovery/modbus_mk.c **** 	}
+  97:App/STM32F4-Discovery/modbus_mk.c **** }
+ 719              		.loc 1 97 0
+ 720 0034 0837     		adds	r7, r7, #8
+ 721 0036 BD46     		mov	sp, r7
+ 722              		@ sp needed
+ 723 0038 80BD     		pop	{r7, pc}
+ 724              	.L9:
+ 725 003a 00BF     		.align	2
+ 726              	.L8:
+ 727 003c 00100140 		.word	1073811456
+ 728              		.cfi_endproc
+ 729              	.LFE111:
+ 731              		.section	.text.USART1_IRQHandler,"ax",%progbits
+ 732              		.align	2
+ 733              		.global	USART1_IRQHandler
+ 734              		.thumb
+ 735              		.thumb_func
+ 737              	USART1_IRQHandler:
+ 738              	.LFB112:
+  98:App/STM32F4-Discovery/modbus_mk.c **** 
+  99:App/STM32F4-Discovery/modbus_mk.c **** // this is the interrupt request handler (IRQ) for ALL USART1 interrupts
+ 100:App/STM32F4-Discovery/modbus_mk.c **** void USART1_IRQHandler(void){
+ 739              		.loc 1 100 0
+ 740              		.cfi_startproc
+ 741              		@ args = 0, pretend = 0, frame = 8
+ 742              		@ frame_needed = 1, uses_anonymous_args = 0
+ 743 0000 80B5     		push	{r7, lr}
+ 744              	.LCFI6:
+ 745              		.cfi_def_cfa_offset 8
+ 746              		.cfi_offset 7, -8
+ 747              		.cfi_offset 14, -4
+ 748 0002 82B0     		sub	sp, sp, #8
+ 749              	.LCFI7:
+ 750              		.cfi_def_cfa_offset 16
+ 751 0004 00AF     		add	r7, sp, #0
+ 752              	.LCFI8:
+ 753              		.cfi_def_cfa_register 7
+ 101:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 102:App/STM32F4-Discovery/modbus_mk.c **** 	// check if the USART1 receive interrupt flag was set
+ 103:App/STM32F4-Discovery/modbus_mk.c **** 	if( USART_GetITStatus(USART1, USART_IT_RXNE) ){
+ 754              		.loc 1 103 0
+ 755 0006 1348     		ldr	r0, .L13
+ 756 0008 40F22551 		movw	r1, #1317
+ 757 000c FFF7FEFF 		bl	USART_GetITStatus
+ 758 0010 0346     		mov	r3, r0
+ 759 0012 002B     		cmp	r3, #0
+ 760 0014 1BD0     		beq	.L10
+ 761              	.LBB2:
+ 104:App/STM32F4-Discovery/modbus_mk.c **** 		
+ 105:App/STM32F4-Discovery/modbus_mk.c **** 		static uint8_t cnt = 0; // this counter is used to determine the string length
+ 106:App/STM32F4-Discovery/modbus_mk.c **** 		char t = USART1->DR; // the character from the USART1 data register is saved in t
+ 762              		.loc 1 106 0
+ 763 0016 0F4B     		ldr	r3, .L13
+ 764 0018 9B88     		ldrh	r3, [r3, #4]	@ movhi
+ 765 001a 9BB2     		uxth	r3, r3
+ 766 001c FB71     		strb	r3, [r7, #7]
+ 107:App/STM32F4-Discovery/modbus_mk.c **** 		
+ 108:App/STM32F4-Discovery/modbus_mk.c **** 		/* check if the received character is not the LF character (used to determine end of string) 
+ 109:App/STM32F4-Discovery/modbus_mk.c **** 		 * or the if the maximum string length has been been reached 
+ 110:App/STM32F4-Discovery/modbus_mk.c **** 		 */
+ 111:App/STM32F4-Discovery/modbus_mk.c **** 		if( (t != '\n') && (cnt < MAX_STRLEN) ){ 
+ 767              		.loc 1 111 0
+ 768 001e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 769 0020 0A2B     		cmp	r3, #10
+ 770 0022 11D0     		beq	.L12
+ 771              		.loc 1 111 0 is_stmt 0 discriminator 1
+ 772 0024 0C4B     		ldr	r3, .L13+4
+ 773 0026 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 774 0028 DBB2     		uxtb	r3, r3
+ 775 002a 5BB2     		sxtb	r3, r3
+ 776 002c 002B     		cmp	r3, #0
+ 777 002e 0BDB     		blt	.L12
+ 112:App/STM32F4-Discovery/modbus_mk.c **** 			received_string[cnt] = t;
+ 778              		.loc 1 112 0 is_stmt 1
+ 779 0030 094B     		ldr	r3, .L13+4
+ 780 0032 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 781 0034 094A     		ldr	r2, .L13+8
+ 782 0036 F979     		ldrb	r1, [r7, #7]
+ 783 0038 D154     		strb	r1, [r2, r3]
+ 113:App/STM32F4-Discovery/modbus_mk.c **** 			cnt++;
+ 784              		.loc 1 113 0
+ 785 003a 074B     		ldr	r3, .L13+4
+ 786 003c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 787 003e 0133     		adds	r3, r3, #1
+ 788 0040 DAB2     		uxtb	r2, r3
+ 789 0042 054B     		ldr	r3, .L13+4
+ 790 0044 1A70     		strb	r2, [r3]
+ 791 0046 02E0     		b	.L10
+ 792              	.L12:
+ 114:App/STM32F4-Discovery/modbus_mk.c **** 		}
+ 115:App/STM32F4-Discovery/modbus_mk.c **** 		else{ // otherwise reset the character counter and print the received string
+ 116:App/STM32F4-Discovery/modbus_mk.c **** 			cnt = 0;
+ 793              		.loc 1 116 0
+ 794 0048 034B     		ldr	r3, .L13+4
+ 795 004a 0022     		movs	r2, #0
+ 796 004c 1A70     		strb	r2, [r3]
+ 797              	.L10:
+ 798              	.LBE2:
+ 117:App/STM32F4-Discovery/modbus_mk.c **** 			//USART_puts(USART1, received_string);
+ 118:App/STM32F4-Discovery/modbus_mk.c **** 		}
+ 119:App/STM32F4-Discovery/modbus_mk.c **** 	}
+ 120:App/STM32F4-Discovery/modbus_mk.c **** }
+ 799              		.loc 1 120 0
+ 800 004e 0837     		adds	r7, r7, #8
+ 801 0050 BD46     		mov	sp, r7
+ 802              		@ sp needed
+ 803 0052 80BD     		pop	{r7, pc}
+ 804              	.L14:
+ 805              		.align	2
+ 806              	.L13:
+ 807 0054 00100140 		.word	1073811456
+ 808 0058 00000000 		.word	cnt.9176
+ 809 005c 00000000 		.word	received_string
+ 810              		.cfi_endproc
+ 811              	.LFE112:
+ 813              		.section	.text.crc16,"ax",%progbits
+ 814              		.align	2
+ 815              		.global	crc16
+ 816              		.thumb
+ 817              		.thumb_func
+ 819              	crc16:
+ 820              	.LFB113:
+ 121:App/STM32F4-Discovery/modbus_mk.c **** 
+ 122:App/STM32F4-Discovery/modbus_mk.c **** 
+ 123:App/STM32F4-Discovery/modbus_mk.c **** 
+ 124:App/STM32F4-Discovery/modbus_mk.c **** /* function for  */
+ 125:App/STM32F4-Discovery/modbus_mk.c **** uint16_t crc16(uint8_t *buffer, uint16_t buffer_length)
+ 126:App/STM32F4-Discovery/modbus_mk.c **** {
+ 821              		.loc 1 126 0
+ 822              		.cfi_startproc
+ 823              		@ args = 0, pretend = 0, frame = 16
+ 824              		@ frame_needed = 1, uses_anonymous_args = 0
+ 825              		@ link register save eliminated.
+ 826 0000 80B4     		push	{r7}
+ 827              	.LCFI9:
+ 828              		.cfi_def_cfa_offset 4
+ 829              		.cfi_offset 7, -4
+ 830 0002 85B0     		sub	sp, sp, #20
+ 831              	.LCFI10:
+ 832              		.cfi_def_cfa_offset 24
+ 833 0004 00AF     		add	r7, sp, #0
+ 834              	.LCFI11:
+ 835              		.cfi_def_cfa_register 7
+ 836 0006 7860     		str	r0, [r7, #4]
+ 837 0008 0B46     		mov	r3, r1
+ 838 000a 7B80     		strh	r3, [r7, #2]	@ movhi
+ 127:App/STM32F4-Discovery/modbus_mk.c ****      uint8_t crc_hi = 0xFF; /* high CRC byte initialized */
+ 839              		.loc 1 127 0
+ 840 000c FF23     		movs	r3, #255
+ 841 000e FB73     		strb	r3, [r7, #15]
+ 128:App/STM32F4-Discovery/modbus_mk.c ****      uint8_t crc_lo = 0xFF; /* low CRC byte initialized */
+ 842              		.loc 1 128 0
+ 843 0010 FF23     		movs	r3, #255
+ 844 0012 BB73     		strb	r3, [r7, #14]
+ 129:App/STM32F4-Discovery/modbus_mk.c ****      unsigned int i; /* will index into CRC lookup */
+ 130:App/STM32F4-Discovery/modbus_mk.c ****  
+ 131:App/STM32F4-Discovery/modbus_mk.c ****      /* pass through message buffer */
+ 132:App/STM32F4-Discovery/modbus_mk.c ****      while (buffer_length--) {
+ 845              		.loc 1 132 0
+ 846 0014 13E0     		b	.L16
+ 847              	.L17:
+ 133:App/STM32F4-Discovery/modbus_mk.c ****          i = crc_hi ^ *buffer++; /* calculate the CRC  */
+ 848              		.loc 1 133 0
+ 849 0016 7B68     		ldr	r3, [r7, #4]
+ 850 0018 5A1C     		adds	r2, r3, #1
+ 851 001a 7A60     		str	r2, [r7, #4]
+ 852 001c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 853 001e FB7B     		ldrb	r3, [r7, #15]
+ 854 0020 5340     		eors	r3, r3, r2
+ 855 0022 DBB2     		uxtb	r3, r3
+ 856 0024 BB60     		str	r3, [r7, #8]
+ 134:App/STM32F4-Discovery/modbus_mk.c ****          crc_hi = crc_lo ^ table_crc_hi[i];
+ 857              		.loc 1 134 0
+ 858 0026 0F4A     		ldr	r2, .L19
+ 859 0028 BB68     		ldr	r3, [r7, #8]
+ 860 002a 1344     		add	r3, r3, r2
+ 861 002c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 862 002e BB7B     		ldrb	r3, [r7, #14]
+ 863 0030 5340     		eors	r3, r3, r2
+ 864 0032 FB73     		strb	r3, [r7, #15]
+ 135:App/STM32F4-Discovery/modbus_mk.c ****          crc_lo = table_crc_lo[i];
+ 865              		.loc 1 135 0
+ 866 0034 0C4A     		ldr	r2, .L19+4
+ 867 0036 BB68     		ldr	r3, [r7, #8]
+ 868 0038 1344     		add	r3, r3, r2
+ 869 003a 1B78     		ldrb	r3, [r3]
+ 870 003c BB73     		strb	r3, [r7, #14]
+ 871              	.L16:
+ 132:App/STM32F4-Discovery/modbus_mk.c ****      while (buffer_length--) {
+ 872              		.loc 1 132 0 discriminator 1
+ 873 003e 7B88     		ldrh	r3, [r7, #2]
+ 874 0040 5A1E     		subs	r2, r3, #1
+ 875 0042 7A80     		strh	r2, [r7, #2]	@ movhi
+ 876 0044 002B     		cmp	r3, #0
+ 877 0046 E6D1     		bne	.L17
+ 136:App/STM32F4-Discovery/modbus_mk.c ****      }
+ 137:App/STM32F4-Discovery/modbus_mk.c ****  
+ 138:App/STM32F4-Discovery/modbus_mk.c ****      return (crc_hi << 8 | crc_lo);
+ 878              		.loc 1 138 0
+ 879 0048 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 880 004a 1B02     		lsls	r3, r3, #8
+ 881 004c 9AB2     		uxth	r2, r3
+ 882 004e BB7B     		ldrb	r3, [r7, #14]	@ zero_extendqisi2
+ 883 0050 9BB2     		uxth	r3, r3
+ 884 0052 1343     		orrs	r3, r3, r2
+ 885 0054 9BB2     		uxth	r3, r3
+ 886 0056 9BB2     		uxth	r3, r3
+ 139:App/STM32F4-Discovery/modbus_mk.c **** }
+ 887              		.loc 1 139 0
+ 888 0058 1846     		mov	r0, r3
+ 889 005a 1437     		adds	r7, r7, #20
+ 890 005c BD46     		mov	sp, r7
+ 891              		@ sp needed
+ 892 005e 5DF8047B 		ldr	r7, [sp], #4
+ 893 0062 7047     		bx	lr
+ 894              	.L20:
+ 895              		.align	2
+ 896              	.L19:
+ 897 0064 00000000 		.word	table_crc_hi
+ 898 0068 00000000 		.word	table_crc_lo
+ 899              		.cfi_endproc
+ 900              	.LFE113:
+ 902              		.section	.text.write_modbus,"ax",%progbits
+ 903              		.align	2
+ 904              		.global	write_modbus
+ 905              		.thumb
+ 906              		.thumb_func
+ 908              	write_modbus:
+ 909              	.LFB114:
+ 140:App/STM32F4-Discovery/modbus_mk.c **** 
+ 141:App/STM32F4-Discovery/modbus_mk.c **** 
+ 142:App/STM32F4-Discovery/modbus_mk.c **** /* write to modbus */
+ 143:App/STM32F4-Discovery/modbus_mk.c **** int write_modbus( uint8_t * req, int nb)
+ 144:App/STM32F4-Discovery/modbus_mk.c **** {
+ 910              		.loc 1 144 0
+ 911              		.cfi_startproc
+ 912              		@ args = 0, pretend = 0, frame = 8
+ 913              		@ frame_needed = 1, uses_anonymous_args = 0
+ 914 0000 80B5     		push	{r7, lr}
+ 915              	.LCFI12:
+ 916              		.cfi_def_cfa_offset 8
+ 917              		.cfi_offset 7, -8
+ 918              		.cfi_offset 14, -4
+ 919 0002 82B0     		sub	sp, sp, #8
+ 920              	.LCFI13:
+ 921              		.cfi_def_cfa_offset 16
+ 922 0004 00AF     		add	r7, sp, #0
+ 923              	.LCFI14:
+ 924              		.cfi_def_cfa_register 7
+ 925 0006 7860     		str	r0, [r7, #4]
+ 926 0008 3960     		str	r1, [r7]
+ 145:App/STM32F4-Discovery/modbus_mk.c **** 	int i; 
+ 146:App/STM32F4-Discovery/modbus_mk.c **** 
+ 147:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 148:App/STM32F4-Discovery/modbus_mk.c **** 	USART_puts(req);
+ 927              		.loc 1 148 0
+ 928 000a 7868     		ldr	r0, [r7, #4]
+ 929 000c FFF7FEFF 		bl	USART_puts
+ 149:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 150:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 151:App/STM32F4-Discovery/modbus_mk.c **** //	for (i = 0; i < nb; i++) printf("{%.2X}", req[i]);
+ 152:App/STM32F4-Discovery/modbus_mk.c **** //	printf("\n");
+ 153:App/STM32F4-Discovery/modbus_mk.c **** 	return nb;
+ 930              		.loc 1 153 0
+ 931 0010 3B68     		ldr	r3, [r7]
+ 154:App/STM32F4-Discovery/modbus_mk.c **** }
+ 932              		.loc 1 154 0
+ 933 0012 1846     		mov	r0, r3
+ 934 0014 0837     		adds	r7, r7, #8
+ 935 0016 BD46     		mov	sp, r7
+ 936              		@ sp needed
+ 937 0018 80BD     		pop	{r7, pc}
+ 938              		.cfi_endproc
+ 939              	.LFE114:
+ 941 001a 00BF     		.section	.text.read_modbus,"ax",%progbits
+ 942              		.align	2
+ 943              		.global	read_modbus
+ 944              		.thumb
+ 945              		.thumb_func
+ 947              	read_modbus:
+ 948              	.LFB115:
+ 155:App/STM32F4-Discovery/modbus_mk.c **** 
+ 156:App/STM32F4-Discovery/modbus_mk.c **** /* read from modbus line (RS485) */
+ 157:App/STM32F4-Discovery/modbus_mk.c **** int read_modbus( uint8_t * req, int nb)
+ 158:App/STM32F4-Discovery/modbus_mk.c **** {
+ 949              		.loc 1 158 0
+ 950              		.cfi_startproc
+ 951              		@ args = 0, pretend = 0, frame = 16
+ 952              		@ frame_needed = 1, uses_anonymous_args = 0
+ 953              		@ link register save eliminated.
+ 954 0000 80B4     		push	{r7}
+ 955              	.LCFI15:
+ 956              		.cfi_def_cfa_offset 4
+ 957              		.cfi_offset 7, -4
+ 958 0002 85B0     		sub	sp, sp, #20
+ 959              	.LCFI16:
+ 960              		.cfi_def_cfa_offset 24
+ 961 0004 00AF     		add	r7, sp, #0
+ 962              	.LCFI17:
+ 963              		.cfi_def_cfa_register 7
+ 964 0006 7860     		str	r0, [r7, #4]
+ 965 0008 3960     		str	r1, [r7]
+ 159:App/STM32F4-Discovery/modbus_mk.c **** 	int i ;	
+ 160:App/STM32F4-Discovery/modbus_mk.c **** 	for (i = 0; i < nb; i++) 
+ 966              		.loc 1 160 0
+ 967 000a 0023     		movs	r3, #0
+ 968 000c FB60     		str	r3, [r7, #12]
+ 969 000e 0BE0     		b	.L24
+ 970              	.L25:
+ 161:App/STM32F4-Discovery/modbus_mk.c **** 		req[i] = received_string[i]; 
+ 971              		.loc 1 161 0 discriminator 2
+ 972 0010 FB68     		ldr	r3, [r7, #12]
+ 973 0012 7A68     		ldr	r2, [r7, #4]
+ 974 0014 1344     		add	r3, r3, r2
+ 975 0016 0A49     		ldr	r1, .L27
+ 976 0018 FA68     		ldr	r2, [r7, #12]
+ 977 001a 0A44     		add	r2, r2, r1
+ 978 001c 1278     		ldrb	r2, [r2]
+ 979 001e D2B2     		uxtb	r2, r2
+ 980 0020 1A70     		strb	r2, [r3]
+ 160:App/STM32F4-Discovery/modbus_mk.c **** 	for (i = 0; i < nb; i++) 
+ 981              		.loc 1 160 0 discriminator 2
+ 982 0022 FB68     		ldr	r3, [r7, #12]
+ 983 0024 0133     		adds	r3, r3, #1
+ 984 0026 FB60     		str	r3, [r7, #12]
+ 985              	.L24:
+ 160:App/STM32F4-Discovery/modbus_mk.c **** 	for (i = 0; i < nb; i++) 
+ 986              		.loc 1 160 0 is_stmt 0 discriminator 1
+ 987 0028 FA68     		ldr	r2, [r7, #12]
+ 988 002a 3B68     		ldr	r3, [r7]
+ 989 002c 9A42     		cmp	r2, r3
+ 990 002e EFDB     		blt	.L25
+ 162:App/STM32F4-Discovery/modbus_mk.c **** //		printf("[%.2X]", req[i]);
+ 163:App/STM32F4-Discovery/modbus_mk.c **** //	printf("\n"); 
+ 164:App/STM32F4-Discovery/modbus_mk.c **** 	return nb; 	
+ 991              		.loc 1 164 0 is_stmt 1
+ 992 0030 3B68     		ldr	r3, [r7]
+ 165:App/STM32F4-Discovery/modbus_mk.c **** }
+ 993              		.loc 1 165 0
+ 994 0032 1846     		mov	r0, r3
+ 995 0034 1437     		adds	r7, r7, #20
+ 996 0036 BD46     		mov	sp, r7
+ 997              		@ sp needed
+ 998 0038 5DF8047B 		ldr	r7, [sp], #4
+ 999 003c 7047     		bx	lr
+ 1000              	.L28:
+ 1001 003e 00BF     		.align	2
+ 1002              	.L27:
+ 1003 0040 00000000 		.word	received_string
+ 1004              		.cfi_endproc
+ 1005              	.LFE115:
+ 1007              		.section	.text.modbus_RIB,"ax",%progbits
+ 1008              		.align	2
+ 1009              		.global	modbus_RIB
+ 1010              		.thumb
+ 1011              		.thumb_func
+ 1013              	modbus_RIB:
+ 1014              	.LFB116:
+ 166:App/STM32F4-Discovery/modbus_mk.c **** 
+ 167:App/STM32F4-Discovery/modbus_mk.c **** /* modbus read input bits */
+ 168:App/STM32F4-Discovery/modbus_mk.c **** int modbus_RIB( int16_t address, int nb, uint8_t *dst )
+ 169:App/STM32F4-Discovery/modbus_mk.c **** {
+ 1015              		.loc 1 169 0
+ 1016              		.cfi_startproc
+ 1017              		@ args = 0, pretend = 0, frame = 544
+ 1018              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1019 0000 80B5     		push	{r7, lr}
+ 1020              	.LCFI18:
+ 1021              		.cfi_def_cfa_offset 8
+ 1022              		.cfi_offset 7, -8
+ 1023              		.cfi_offset 14, -4
+ 1024 0002 ADF5087D 		sub	sp, sp, #544
+ 1025              	.LCFI19:
+ 1026              		.cfi_def_cfa_offset 552
+ 1027 0006 00AF     		add	r7, sp, #0
+ 1028              	.LCFI20:
+ 1029              		.cfi_def_cfa_register 7
+ 1030 0008 07F10803 		add	r3, r7, #8
+ 1031 000c 1960     		str	r1, [r3]
+ 1032 000e 3B1D     		adds	r3, r7, #4
+ 1033 0010 1A60     		str	r2, [r3]
+ 1034 0012 07F10E03 		add	r3, r7, #14
+ 1035 0016 0246     		mov	r2, r0	@ movhi
+ 1036 0018 1A80     		strh	r2, [r3]	@ movhi
+ 170:App/STM32F4-Discovery/modbus_mk.c **** 	/* first send request */
+ 171:App/STM32F4-Discovery/modbus_mk.c **** 
+ 172:App/STM32F4-Discovery/modbus_mk.c **** 	uint8_t req[REQ_MAX_LEN];
+ 173:App/STM32F4-Discovery/modbus_mk.c **** 	int req_length; 
+ 174:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 175:App/STM32F4-Discovery/modbus_mk.c **** 	req[0] = 0x36; 
+ 1037              		.loc 1 175 0
+ 1038 001a 07F11403 		add	r3, r7, #20
+ 1039 001e 3622     		movs	r2, #54
+ 1040 0020 1A70     		strb	r2, [r3]
+ 176:App/STM32F4-Discovery/modbus_mk.c **** 	req[1] = 0x2;
+ 1041              		.loc 1 176 0
+ 1042 0022 07F11403 		add	r3, r7, #20
+ 1043 0026 0222     		movs	r2, #2
+ 1044 0028 5A70     		strb	r2, [r3, #1]
+ 177:App/STM32F4-Discovery/modbus_mk.c **** 	req[2] = address >> 8;
+ 1045              		.loc 1 177 0
+ 1046 002a 07F10E03 		add	r3, r7, #14
+ 1047 002e B3F90030 		ldrsh	r3, [r3]
+ 1048 0032 1B12     		asrs	r3, r3, #8
+ 1049 0034 9BB2     		uxth	r3, r3
+ 1050 0036 DAB2     		uxtb	r2, r3
+ 1051 0038 07F11403 		add	r3, r7, #20
+ 1052 003c 9A70     		strb	r2, [r3, #2]
+ 178:App/STM32F4-Discovery/modbus_mk.c **** 	req[3] = address & 0x00ff;
+ 1053              		.loc 1 178 0
+ 1054 003e 07F10E03 		add	r3, r7, #14
+ 1055 0042 1B88     		ldrh	r3, [r3]	@ movhi
+ 1056 0044 DAB2     		uxtb	r2, r3
+ 1057 0046 07F11403 		add	r3, r7, #20
+ 1058 004a DA70     		strb	r2, [r3, #3]
+ 179:App/STM32F4-Discovery/modbus_mk.c **** 	req[4] = nb >> 8;
+ 1059              		.loc 1 179 0
+ 1060 004c 07F10803 		add	r3, r7, #8
+ 1061 0050 1B68     		ldr	r3, [r3]
+ 1062 0052 1B12     		asrs	r3, r3, #8
+ 1063 0054 DAB2     		uxtb	r2, r3
+ 1064 0056 07F11403 		add	r3, r7, #20
+ 1065 005a 1A71     		strb	r2, [r3, #4]
+ 180:App/STM32F4-Discovery/modbus_mk.c **** 	req[5] = nb & 0x00ff; 
+ 1066              		.loc 1 180 0
+ 1067 005c 07F10803 		add	r3, r7, #8
+ 1068 0060 1B68     		ldr	r3, [r3]
+ 1069 0062 DAB2     		uxtb	r2, r3
+ 1070 0064 07F11403 		add	r3, r7, #20
+ 1071 0068 5A71     		strb	r2, [r3, #5]
+ 181:App/STM32F4-Discovery/modbus_mk.c **** 	req_length = 6;
+ 1072              		.loc 1 181 0
+ 1073 006a 0623     		movs	r3, #6
+ 1074 006c C7F81832 		str	r3, [r7, #536]
+ 182:App/STM32F4-Discovery/modbus_mk.c **** 	uint16_t crc = crc16(req, req_length);
+ 1075              		.loc 1 182 0
+ 1076 0070 D7F81832 		ldr	r3, [r7, #536]
+ 1077 0074 9BB2     		uxth	r3, r3
+ 1078 0076 07F11402 		add	r2, r7, #20
+ 1079 007a 1046     		mov	r0, r2
+ 1080 007c 1946     		mov	r1, r3
+ 1081 007e FFF7FEFF 		bl	crc16
+ 1082 0082 0346     		mov	r3, r0
+ 1083 0084 A7F81632 		strh	r3, [r7, #534]	@ movhi
+ 183:App/STM32F4-Discovery/modbus_mk.c **** 
+ 184:App/STM32F4-Discovery/modbus_mk.c **** 	req[req_length++] = crc >> 8; 
+ 1084              		.loc 1 184 0
+ 1085 0088 D7F81832 		ldr	r3, [r7, #536]
+ 1086 008c 5A1C     		adds	r2, r3, #1
+ 1087 008e C7F81822 		str	r2, [r7, #536]
+ 1088 0092 B7F81622 		ldrh	r2, [r7, #534]
+ 1089 0096 120A     		lsrs	r2, r2, #8
+ 1090 0098 92B2     		uxth	r2, r2
+ 1091 009a D1B2     		uxtb	r1, r2
+ 1092 009c 07F11402 		add	r2, r7, #20
+ 1093 00a0 D154     		strb	r1, [r2, r3]
+ 185:App/STM32F4-Discovery/modbus_mk.c **** 	req[req_length++] = crc & 0x00ff; 
+ 1094              		.loc 1 185 0
+ 1095 00a2 D7F81832 		ldr	r3, [r7, #536]
+ 1096 00a6 5A1C     		adds	r2, r3, #1
+ 1097 00a8 C7F81822 		str	r2, [r7, #536]
+ 1098 00ac B7F81622 		ldrh	r2, [r7, #534]	@ movhi
+ 1099 00b0 D1B2     		uxtb	r1, r2
+ 1100 00b2 07F11402 		add	r2, r7, #20
+ 1101 00b6 D154     		strb	r1, [r2, r3]
+ 186:App/STM32F4-Discovery/modbus_mk.c **** 	int rc;	
+ 187:App/STM32F4-Discovery/modbus_mk.c **** 	/* write request  to modbus line */
+ 188:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 189:App/STM32F4-Discovery/modbus_mk.c **** 	rc =  write_modbus( req, req_length);
+ 1102              		.loc 1 189 0
+ 1103 00b8 07F11403 		add	r3, r7, #20
+ 1104 00bc 1846     		mov	r0, r3
+ 1105 00be D7F81812 		ldr	r1, [r7, #536]
+ 1106 00c2 FFF7FEFF 		bl	write_modbus
+ 1107 00c6 C7F81C02 		str	r0, [r7, #540]
+ 190:App/STM32F4-Discovery/modbus_mk.c **** 
+ 191:App/STM32F4-Discovery/modbus_mk.c **** 	/* if req was sent, recieve response */
+ 192:App/STM32F4-Discovery/modbus_mk.c **** 	if (rc > 0) {
+ 1108              		.loc 1 192 0
+ 1109 00ca D7F81C32 		ldr	r3, [r7, #540]
+ 1110 00ce 002B     		cmp	r3, #0
+ 1111 00d0 0DDD     		ble	.L30
+ 193:App/STM32F4-Discovery/modbus_mk.c **** 		rc = read_modbus( dst, 6); 
+ 1112              		.loc 1 193 0
+ 1113 00d2 3B1D     		adds	r3, r7, #4
+ 1114 00d4 1868     		ldr	r0, [r3]
+ 1115 00d6 0621     		movs	r1, #6
+ 1116 00d8 FFF7FEFF 		bl	read_modbus
+ 1117 00dc C7F81C02 		str	r0, [r7, #540]
+ 194:App/STM32F4-Discovery/modbus_mk.c **** 		if (rc < 0) return -1; 
+ 1118              		.loc 1 194 0
+ 1119 00e0 D7F81C32 		ldr	r3, [r7, #540]
+ 1120 00e4 002B     		cmp	r3, #0
+ 1121 00e6 02DA     		bge	.L30
+ 1122              		.loc 1 194 0 is_stmt 0 discriminator 1
+ 1123 00e8 4FF0FF33 		mov	r3, #-1
+ 1124 00ec 01E0     		b	.L32
+ 1125              	.L30:
+ 195:App/STM32F4-Discovery/modbus_mk.c **** 
+ 196:App/STM32F4-Discovery/modbus_mk.c **** 	}
+ 197:App/STM32F4-Discovery/modbus_mk.c **** 	return rc;
+ 1126              		.loc 1 197 0 is_stmt 1
+ 1127 00ee D7F81C32 		ldr	r3, [r7, #540]
+ 1128              	.L32:
+ 198:App/STM32F4-Discovery/modbus_mk.c **** }
+ 1129              		.loc 1 198 0
+ 1130 00f2 1846     		mov	r0, r3
+ 1131 00f4 07F50877 		add	r7, r7, #544
+ 1132 00f8 BD46     		mov	sp, r7
+ 1133              		@ sp needed
+ 1134 00fa 80BD     		pop	{r7, pc}
+ 1135              		.cfi_endproc
+ 1136              	.LFE116:
+ 1138              		.section	.text.modbus_WIB,"ax",%progbits
+ 1139              		.align	2
+ 1140              		.global	modbus_WIB
+ 1141              		.thumb
+ 1142              		.thumb_func
+ 1144              	modbus_WIB:
+ 1145              	.LFB117:
+ 199:App/STM32F4-Discovery/modbus_mk.c **** 
+ 200:App/STM32F4-Discovery/modbus_mk.c **** 
+ 201:App/STM32F4-Discovery/modbus_mk.c **** /* modbus write input bits */
+ 202:App/STM32F4-Discovery/modbus_mk.c **** int modbus_WIB( uint16_t address, int nb, uint8_t *src )
+ 203:App/STM32F4-Discovery/modbus_mk.c **** {
+ 1146              		.loc 1 203 0
+ 1147              		.cfi_startproc
+ 1148              		@ args = 0, pretend = 0, frame = 560
+ 1149              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1150 0000 80B5     		push	{r7, lr}
+ 1151              	.LCFI21:
+ 1152              		.cfi_def_cfa_offset 8
+ 1153              		.cfi_offset 7, -8
+ 1154              		.cfi_offset 14, -4
+ 1155 0002 ADF50C7D 		sub	sp, sp, #560
+ 1156              	.LCFI22:
+ 1157              		.cfi_def_cfa_offset 568
+ 1158 0006 00AF     		add	r7, sp, #0
+ 1159              	.LCFI23:
+ 1160              		.cfi_def_cfa_register 7
+ 1161 0008 07F10803 		add	r3, r7, #8
+ 1162 000c 1960     		str	r1, [r3]
+ 1163 000e 3B1D     		adds	r3, r7, #4
+ 1164 0010 1A60     		str	r2, [r3]
+ 1165 0012 07F10E03 		add	r3, r7, #14
+ 1166 0016 0246     		mov	r2, r0	@ movhi
+ 1167 0018 1A80     		strh	r2, [r3]	@ movhi
+ 204:App/STM32F4-Discovery/modbus_mk.c **** 	/* first send request */
+ 205:App/STM32F4-Discovery/modbus_mk.c **** 
+ 206:App/STM32F4-Discovery/modbus_mk.c **** 	uint8_t req[REQ_MAX_LEN];
+ 207:App/STM32F4-Discovery/modbus_mk.c **** 	int byte_count; 
+ 208:App/STM32F4-Discovery/modbus_mk.c **** 	int req_length; 
+ 209:App/STM32F4-Discovery/modbus_mk.c **** 	int bit_check = 0; 
+ 1168              		.loc 1 209 0
+ 1169 001a 0023     		movs	r3, #0
+ 1170 001c C7F82832 		str	r3, [r7, #552]
+ 210:App/STM32F4-Discovery/modbus_mk.c **** 	int pos = 0; 
+ 1171              		.loc 1 210 0
+ 1172 0020 0023     		movs	r3, #0
+ 1173 0022 C7F82432 		str	r3, [r7, #548]
+ 211:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 212:App/STM32F4-Discovery/modbus_mk.c **** 	req[0] = 0x36; 
+ 1174              		.loc 1 212 0
+ 1175 0026 07F11003 		add	r3, r7, #16
+ 1176 002a 3622     		movs	r2, #54
+ 1177 002c 1A70     		strb	r2, [r3]
+ 213:App/STM32F4-Discovery/modbus_mk.c **** 	req[1] = 0xF;
+ 1178              		.loc 1 213 0
+ 1179 002e 07F11003 		add	r3, r7, #16
+ 1180 0032 0F22     		movs	r2, #15
+ 1181 0034 5A70     		strb	r2, [r3, #1]
+ 214:App/STM32F4-Discovery/modbus_mk.c **** 	req[2] = address >> 8;
+ 1182              		.loc 1 214 0
+ 1183 0036 07F10E03 		add	r3, r7, #14
+ 1184 003a 1B88     		ldrh	r3, [r3]
+ 1185 003c 1B0A     		lsrs	r3, r3, #8
+ 1186 003e 9BB2     		uxth	r3, r3
+ 1187 0040 DAB2     		uxtb	r2, r3
+ 1188 0042 07F11003 		add	r3, r7, #16
+ 1189 0046 9A70     		strb	r2, [r3, #2]
+ 215:App/STM32F4-Discovery/modbus_mk.c **** 	req[3] = address & 0x00ff;
+ 1190              		.loc 1 215 0
+ 1191 0048 07F10E03 		add	r3, r7, #14
+ 1192 004c 1B88     		ldrh	r3, [r3]	@ movhi
+ 1193 004e DAB2     		uxtb	r2, r3
+ 1194 0050 07F11003 		add	r3, r7, #16
+ 1195 0054 DA70     		strb	r2, [r3, #3]
+ 216:App/STM32F4-Discovery/modbus_mk.c **** 	req[4] = nb >> 8;
+ 1196              		.loc 1 216 0
+ 1197 0056 07F10803 		add	r3, r7, #8
+ 1198 005a 1B68     		ldr	r3, [r3]
+ 1199 005c 1B12     		asrs	r3, r3, #8
+ 1200 005e DAB2     		uxtb	r2, r3
+ 1201 0060 07F11003 		add	r3, r7, #16
+ 1202 0064 1A71     		strb	r2, [r3, #4]
+ 217:App/STM32F4-Discovery/modbus_mk.c **** 	req[5] = nb & 0x00ff; 
+ 1203              		.loc 1 217 0
+ 1204 0066 07F10803 		add	r3, r7, #8
+ 1205 006a 1B68     		ldr	r3, [r3]
+ 1206 006c DAB2     		uxtb	r2, r3
+ 1207 006e 07F11003 		add	r3, r7, #16
+ 1208 0072 5A71     		strb	r2, [r3, #5]
+ 218:App/STM32F4-Discovery/modbus_mk.c **** 	req_length = 6; 
+ 1209              		.loc 1 218 0
+ 1210 0074 0623     		movs	r3, #6
+ 1211 0076 C7F82C32 		str	r3, [r7, #556]
+ 219:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 220:App/STM32F4-Discovery/modbus_mk.c ****     	byte_count = (nb / 8) + ((nb % 8) ? 1 : 0);
+ 1212              		.loc 1 220 0
+ 1213 007a 07F10803 		add	r3, r7, #8
+ 1214 007e 1B68     		ldr	r3, [r3]
+ 1215 0080 002B     		cmp	r3, #0
+ 1216 0082 00DA     		bge	.L34
+ 1217 0084 0733     		adds	r3, r3, #7
+ 1218              	.L34:
+ 1219 0086 DB10     		asrs	r3, r3, #3
+ 1220 0088 1A46     		mov	r2, r3
+ 1221 008a 07F10803 		add	r3, r7, #8
+ 1222 008e 1B68     		ldr	r3, [r3]
+ 1223 0090 03F00703 		and	r3, r3, #7
+ 1224 0094 002B     		cmp	r3, #0
+ 1225 0096 0CBF     		ite	eq
+ 1226 0098 0023     		moveq	r3, #0
+ 1227 009a 0123     		movne	r3, #1
+ 1228 009c DBB2     		uxtb	r3, r3
+ 1229 009e 1344     		add	r3, r3, r2
+ 1230 00a0 C7F81832 		str	r3, [r7, #536]
+ 221:App/STM32F4-Discovery/modbus_mk.c ****   	req[req_length++] = byte_count;
+ 1231              		.loc 1 221 0
+ 1232 00a4 D7F82C32 		ldr	r3, [r7, #556]
+ 1233 00a8 5A1C     		adds	r2, r3, #1
+ 1234 00aa C7F82C22 		str	r2, [r7, #556]
+ 1235 00ae D7F81822 		ldr	r2, [r7, #536]
+ 1236 00b2 D1B2     		uxtb	r1, r2
+ 1237 00b4 07F11002 		add	r2, r7, #16
+ 1238 00b8 D154     		strb	r1, [r2, r3]
+ 222:App/STM32F4-Discovery/modbus_mk.c **** 
+ 223:App/STM32F4-Discovery/modbus_mk.c **** 	int i; 
+ 224:App/STM32F4-Discovery/modbus_mk.c ****     	for (i = 0; i < byte_count; i++) {
+ 1239              		.loc 1 224 0
+ 1240 00ba 0023     		movs	r3, #0
+ 1241 00bc C7F82032 		str	r3, [r7, #544]
+ 1242 00c0 5CE0     		b	.L35
+ 1243              	.L41:
+ 1244              	.LBB3:
+ 225:App/STM32F4-Discovery/modbus_mk.c ****         
+ 226:App/STM32F4-Discovery/modbus_mk.c **** 		int bit;
+ 227:App/STM32F4-Discovery/modbus_mk.c **** 		bit = 0x01;
+ 1245              		.loc 1 227 0
+ 1246 00c2 0123     		movs	r3, #1
+ 1247 00c4 C7F81C32 		str	r3, [r7, #540]
+ 228:App/STM32F4-Discovery/modbus_mk.c ****         	req[req_length] = 0;
+ 1248              		.loc 1 228 0
+ 1249 00c8 07F11002 		add	r2, r7, #16
+ 1250 00cc D7F82C32 		ldr	r3, [r7, #556]
+ 1251 00d0 1344     		add	r3, r3, r2
+ 1252 00d2 0022     		movs	r2, #0
+ 1253 00d4 1A70     		strb	r2, [r3]
+ 229:App/STM32F4-Discovery/modbus_mk.c **** 
+ 230:App/STM32F4-Discovery/modbus_mk.c ****         	while ((bit & 0xFF) && (bit_check++ < nb)) {
+ 1254              		.loc 1 230 0
+ 1255 00d6 38E0     		b	.L36
+ 1256              	.L40:
+ 231:App/STM32F4-Discovery/modbus_mk.c ****             		if (src[pos++])
+ 1257              		.loc 1 231 0
+ 1258 00d8 D7F82432 		ldr	r3, [r7, #548]
+ 1259 00dc 5A1C     		adds	r2, r3, #1
+ 1260 00de C7F82422 		str	r2, [r7, #548]
+ 1261 00e2 3A1D     		adds	r2, r7, #4
+ 1262 00e4 1268     		ldr	r2, [r2]
+ 1263 00e6 1344     		add	r3, r3, r2
+ 1264 00e8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1265 00ea 002B     		cmp	r3, #0
+ 1266 00ec 13D0     		beq	.L37
+ 232:App/STM32F4-Discovery/modbus_mk.c ****                 		req[req_length] |= bit;
+ 1267              		.loc 1 232 0
+ 1268 00ee 07F11002 		add	r2, r7, #16
+ 1269 00f2 D7F82C32 		ldr	r3, [r7, #556]
+ 1270 00f6 1344     		add	r3, r3, r2
+ 1271 00f8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1272 00fa DAB2     		uxtb	r2, r3
+ 1273 00fc D7F81C32 		ldr	r3, [r7, #540]
+ 1274 0100 DBB2     		uxtb	r3, r3
+ 1275 0102 1343     		orrs	r3, r3, r2
+ 1276 0104 DBB2     		uxtb	r3, r3
+ 1277 0106 DAB2     		uxtb	r2, r3
+ 1278 0108 07F11001 		add	r1, r7, #16
+ 1279 010c D7F82C32 		ldr	r3, [r7, #556]
+ 1280 0110 0B44     		add	r3, r3, r1
+ 1281 0112 1A70     		strb	r2, [r3]
+ 1282 0114 14E0     		b	.L38
+ 1283              	.L37:
+ 233:App/STM32F4-Discovery/modbus_mk.c ****             		else
+ 234:App/STM32F4-Discovery/modbus_mk.c ****                 		req[req_length] &=~ bit;
+ 1284              		.loc 1 234 0
+ 1285 0116 07F11002 		add	r2, r7, #16
+ 1286 011a D7F82C32 		ldr	r3, [r7, #556]
+ 1287 011e 1344     		add	r3, r3, r2
+ 1288 0120 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1289 0122 DAB2     		uxtb	r2, r3
+ 1290 0124 D7F81C32 		ldr	r3, [r7, #540]
+ 1291 0128 DBB2     		uxtb	r3, r3
+ 1292 012a DB43     		mvns	r3, r3
+ 1293 012c DBB2     		uxtb	r3, r3
+ 1294 012e 1340     		ands	r3, r3, r2
+ 1295 0130 DBB2     		uxtb	r3, r3
+ 1296 0132 DAB2     		uxtb	r2, r3
+ 1297 0134 07F11001 		add	r1, r7, #16
+ 1298 0138 D7F82C32 		ldr	r3, [r7, #556]
+ 1299 013c 0B44     		add	r3, r3, r1
+ 1300 013e 1A70     		strb	r2, [r3]
+ 1301              	.L38:
+ 235:App/STM32F4-Discovery/modbus_mk.c **** 
+ 236:App/STM32F4-Discovery/modbus_mk.c ****             		bit = bit << 1;
+ 1302              		.loc 1 236 0
+ 1303 0140 D7F81C32 		ldr	r3, [r7, #540]
+ 1304 0144 5B00     		lsls	r3, r3, #1
+ 1305 0146 C7F81C32 		str	r3, [r7, #540]
+ 1306              	.L36:
+ 230:App/STM32F4-Discovery/modbus_mk.c ****         	while ((bit & 0xFF) && (bit_check++ < nb)) {
+ 1307              		.loc 1 230 0 discriminator 1
+ 1308 014a D7F81C32 		ldr	r3, [r7, #540]
+ 1309 014e DBB2     		uxtb	r3, r3
+ 1310 0150 002B     		cmp	r3, #0
+ 1311 0152 09D0     		beq	.L39
+ 230:App/STM32F4-Discovery/modbus_mk.c ****         	while ((bit & 0xFF) && (bit_check++ < nb)) {
+ 1312              		.loc 1 230 0 is_stmt 0 discriminator 2
+ 1313 0154 D7F82832 		ldr	r3, [r7, #552]
+ 1314 0158 5A1C     		adds	r2, r3, #1
+ 1315 015a C7F82822 		str	r2, [r7, #552]
+ 1316 015e 07F10802 		add	r2, r7, #8
+ 1317 0162 1268     		ldr	r2, [r2]
+ 1318 0164 9342     		cmp	r3, r2
+ 1319 0166 B7DB     		blt	.L40
+ 1320              	.L39:
+ 237:App/STM32F4-Discovery/modbus_mk.c ****         	}	
+ 238:App/STM32F4-Discovery/modbus_mk.c ****         	
+ 239:App/STM32F4-Discovery/modbus_mk.c **** 		req_length++;
+ 1321              		.loc 1 239 0 is_stmt 1
+ 1322 0168 D7F82C32 		ldr	r3, [r7, #556]
+ 1323 016c 0133     		adds	r3, r3, #1
+ 1324 016e C7F82C32 		str	r3, [r7, #556]
+ 1325              	.LBE3:
+ 224:App/STM32F4-Discovery/modbus_mk.c ****     	for (i = 0; i < byte_count; i++) {
+ 1326              		.loc 1 224 0
+ 1327 0172 D7F82032 		ldr	r3, [r7, #544]
+ 1328 0176 0133     		adds	r3, r3, #1
+ 1329 0178 C7F82032 		str	r3, [r7, #544]
+ 1330              	.L35:
+ 224:App/STM32F4-Discovery/modbus_mk.c ****     	for (i = 0; i < byte_count; i++) {
+ 1331              		.loc 1 224 0 is_stmt 0 discriminator 1
+ 1332 017c D7F82022 		ldr	r2, [r7, #544]
+ 1333 0180 D7F81832 		ldr	r3, [r7, #536]
+ 1334 0184 9A42     		cmp	r2, r3
+ 1335 0186 9CDB     		blt	.L41
+ 240:App/STM32F4-Discovery/modbus_mk.c **** 	 }
+ 241:App/STM32F4-Discovery/modbus_mk.c **** 
+ 242:App/STM32F4-Discovery/modbus_mk.c **** 	uint16_t crc = crc16(req, req_length);
+ 1336              		.loc 1 242 0 is_stmt 1
+ 1337 0188 D7F82C32 		ldr	r3, [r7, #556]
+ 1338 018c 9BB2     		uxth	r3, r3
+ 1339 018e 07F11002 		add	r2, r7, #16
+ 1340 0192 1046     		mov	r0, r2
+ 1341 0194 1946     		mov	r1, r3
+ 1342 0196 FFF7FEFF 		bl	crc16
+ 1343 019a 0346     		mov	r3, r0
+ 1344 019c A7F81632 		strh	r3, [r7, #534]	@ movhi
+ 243:App/STM32F4-Discovery/modbus_mk.c **** 
+ 244:App/STM32F4-Discovery/modbus_mk.c **** 	req[req_length++] = crc >> 8; 
+ 1345              		.loc 1 244 0
+ 1346 01a0 D7F82C32 		ldr	r3, [r7, #556]
+ 1347 01a4 5A1C     		adds	r2, r3, #1
+ 1348 01a6 C7F82C22 		str	r2, [r7, #556]
+ 1349 01aa B7F81622 		ldrh	r2, [r7, #534]
+ 1350 01ae 120A     		lsrs	r2, r2, #8
+ 1351 01b0 92B2     		uxth	r2, r2
+ 1352 01b2 D1B2     		uxtb	r1, r2
+ 1353 01b4 07F11002 		add	r2, r7, #16
+ 1354 01b8 D154     		strb	r1, [r2, r3]
+ 245:App/STM32F4-Discovery/modbus_mk.c **** 	req[req_length++] = crc & 0x00ff; 
+ 1355              		.loc 1 245 0
+ 1356 01ba D7F82C32 		ldr	r3, [r7, #556]
+ 1357 01be 5A1C     		adds	r2, r3, #1
+ 1358 01c0 C7F82C22 		str	r2, [r7, #556]
+ 1359 01c4 B7F81622 		ldrh	r2, [r7, #534]	@ movhi
+ 1360 01c8 D1B2     		uxtb	r1, r2
+ 1361 01ca 07F11002 		add	r2, r7, #16
+ 1362 01ce D154     		strb	r1, [r2, r3]
+ 246:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 247:App/STM32F4-Discovery/modbus_mk.c **** 	/* write request  to modbus line */
+ 248:App/STM32F4-Discovery/modbus_mk.c **** 	int rc =  write_modbus( req, req_length); 
+ 1363              		.loc 1 248 0
+ 1364 01d0 07F11003 		add	r3, r7, #16
+ 1365 01d4 1846     		mov	r0, r3
+ 1366 01d6 D7F82C12 		ldr	r1, [r7, #556]
+ 1367 01da FFF7FEFF 		bl	write_modbus
+ 1368 01de C7F81002 		str	r0, [r7, #528]
+ 249:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 250:App/STM32F4-Discovery/modbus_mk.c **** 	/* if req was sent read from modbus line */
+ 251:App/STM32F4-Discovery/modbus_mk.c **** 	if (rc > 0) read_modbus( req, 8);
+ 1369              		.loc 1 251 0
+ 1370 01e2 D7F81032 		ldr	r3, [r7, #528]
+ 1371 01e6 002B     		cmp	r3, #0
+ 1372 01e8 05DD     		ble	.L42
+ 1373              		.loc 1 251 0 is_stmt 0 discriminator 1
+ 1374 01ea 07F11003 		add	r3, r7, #16
+ 1375 01ee 1846     		mov	r0, r3
+ 1376 01f0 0821     		movs	r1, #8
+ 1377 01f2 FFF7FEFF 		bl	read_modbus
+ 1378              	.L42:
+ 252:App/STM32F4-Discovery/modbus_mk.c **** 	return rc;
+ 1379              		.loc 1 252 0 is_stmt 1
+ 1380 01f6 D7F81032 		ldr	r3, [r7, #528]
+ 253:App/STM32F4-Discovery/modbus_mk.c **** }
+ 1381              		.loc 1 253 0
+ 1382 01fa 1846     		mov	r0, r3
+ 1383 01fc 07F50C77 		add	r7, r7, #560
+ 1384 0200 BD46     		mov	sp, r7
+ 1385              		@ sp needed
+ 1386 0202 80BD     		pop	{r7, pc}
+ 1387              		.cfi_endproc
+ 1388              	.LFE117:
+ 1390              		.section	.text.modbus_WR,"ax",%progbits
+ 1391              		.align	2
+ 1392              		.global	modbus_WR
+ 1393              		.thumb
+ 1394              		.thumb_func
+ 1396              	modbus_WR:
+ 1397              	.LFB118:
+ 254:App/STM32F4-Discovery/modbus_mk.c **** 
+ 255:App/STM32F4-Discovery/modbus_mk.c **** /* Write the values from the array to the registers of the remote device */
+ 256:App/STM32F4-Discovery/modbus_mk.c **** int modbus_WR( int address, int nb, const uint16_t *src)
+ 257:App/STM32F4-Discovery/modbus_mk.c **** {
+ 1398              		.loc 1 257 0
+ 1399              		.cfi_startproc
+ 1400              		@ args = 0, pretend = 0, frame = 552
+ 1401              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1402 0000 80B5     		push	{r7, lr}
+ 1403              	.LCFI24:
+ 1404              		.cfi_def_cfa_offset 8
+ 1405              		.cfi_offset 7, -8
+ 1406              		.cfi_offset 14, -4
+ 1407 0002 ADF50A7D 		sub	sp, sp, #552
+ 1408              	.LCFI25:
+ 1409              		.cfi_def_cfa_offset 560
+ 1410 0006 00AF     		add	r7, sp, #0
+ 1411              	.LCFI26:
+ 1412              		.cfi_def_cfa_register 7
+ 1413 0008 07F10C03 		add	r3, r7, #12
+ 1414 000c 1860     		str	r0, [r3]
+ 1415 000e 07F10803 		add	r3, r7, #8
+ 1416 0012 1960     		str	r1, [r3]
+ 1417 0014 3B1D     		adds	r3, r7, #4
+ 1418 0016 1A60     		str	r2, [r3]
+ 258:App/STM32F4-Discovery/modbus_mk.c **** 	int rc;
+ 259:App/STM32F4-Discovery/modbus_mk.c **** 	int i;
+ 260:App/STM32F4-Discovery/modbus_mk.c ****     	int req_length;
+ 261:App/STM32F4-Discovery/modbus_mk.c ****     	int byte_count;
+ 262:App/STM32F4-Discovery/modbus_mk.c **** 
+ 263:App/STM32F4-Discovery/modbus_mk.c ****     	uint8_t req[REQ_MAX_LEN];
+ 264:App/STM32F4-Discovery/modbus_mk.c **** 
+ 265:App/STM32F4-Discovery/modbus_mk.c **** 	req[0] = 0x36; 
+ 1419              		.loc 1 265 0
+ 1420 0018 07F11403 		add	r3, r7, #20
+ 1421 001c 3622     		movs	r2, #54
+ 1422 001e 1A70     		strb	r2, [r3]
+ 266:App/STM32F4-Discovery/modbus_mk.c **** 	req[1] = 0x10;
+ 1423              		.loc 1 266 0
+ 1424 0020 07F11403 		add	r3, r7, #20
+ 1425 0024 1022     		movs	r2, #16
+ 1426 0026 5A70     		strb	r2, [r3, #1]
+ 267:App/STM32F4-Discovery/modbus_mk.c **** 	req[2] = address >> 8;
+ 1427              		.loc 1 267 0
+ 1428 0028 07F10C03 		add	r3, r7, #12
+ 1429 002c 1B68     		ldr	r3, [r3]
+ 1430 002e 1B12     		asrs	r3, r3, #8
+ 1431 0030 DAB2     		uxtb	r2, r3
+ 1432 0032 07F11403 		add	r3, r7, #20
+ 1433 0036 9A70     		strb	r2, [r3, #2]
+ 268:App/STM32F4-Discovery/modbus_mk.c **** 	req[3] = address & 0x00ff;
+ 1434              		.loc 1 268 0
+ 1435 0038 07F10C03 		add	r3, r7, #12
+ 1436 003c 1B68     		ldr	r3, [r3]
+ 1437 003e DAB2     		uxtb	r2, r3
+ 1438 0040 07F11403 		add	r3, r7, #20
+ 1439 0044 DA70     		strb	r2, [r3, #3]
+ 269:App/STM32F4-Discovery/modbus_mk.c **** 	req[4] = nb >> 8;
+ 1440              		.loc 1 269 0
+ 1441 0046 07F10803 		add	r3, r7, #8
+ 1442 004a 1B68     		ldr	r3, [r3]
+ 1443 004c 1B12     		asrs	r3, r3, #8
+ 1444 004e DAB2     		uxtb	r2, r3
+ 1445 0050 07F11403 		add	r3, r7, #20
+ 1446 0054 1A71     		strb	r2, [r3, #4]
+ 270:App/STM32F4-Discovery/modbus_mk.c **** 	req[5] = nb & 0x00ff; 
+ 1447              		.loc 1 270 0
+ 1448 0056 07F10803 		add	r3, r7, #8
+ 1449 005a 1B68     		ldr	r3, [r3]
+ 1450 005c DAB2     		uxtb	r2, r3
+ 1451 005e 07F11403 		add	r3, r7, #20
+ 1452 0062 5A71     		strb	r2, [r3, #5]
+ 271:App/STM32F4-Discovery/modbus_mk.c **** 	req_length = 6; 
+ 1453              		.loc 1 271 0
+ 1454 0064 0623     		movs	r3, #6
+ 1455 0066 C7F82032 		str	r3, [r7, #544]
+ 272:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 273:App/STM32F4-Discovery/modbus_mk.c ****    	byte_count = nb * 2;
+ 1456              		.loc 1 273 0
+ 1457 006a 07F10803 		add	r3, r7, #8
+ 1458 006e 1B68     		ldr	r3, [r3]
+ 1459 0070 5B00     		lsls	r3, r3, #1
+ 1460 0072 C7F81C32 		str	r3, [r7, #540]
+ 274:App/STM32F4-Discovery/modbus_mk.c ****     	req[req_length++] = byte_count;
+ 1461              		.loc 1 274 0
+ 1462 0076 D7F82032 		ldr	r3, [r7, #544]
+ 1463 007a 5A1C     		adds	r2, r3, #1
+ 1464 007c C7F82022 		str	r2, [r7, #544]
+ 1465 0080 D7F81C22 		ldr	r2, [r7, #540]
+ 1466 0084 D1B2     		uxtb	r1, r2
+ 1467 0086 07F11402 		add	r2, r7, #20
+ 1468 008a D154     		strb	r1, [r2, r3]
+ 275:App/STM32F4-Discovery/modbus_mk.c **** 
+ 276:App/STM32F4-Discovery/modbus_mk.c ****     	for (i = 0; i < nb; i++) {
+ 1469              		.loc 1 276 0
+ 1470 008c 0023     		movs	r3, #0
+ 1471 008e C7F82432 		str	r3, [r7, #548]
+ 1472 0092 26E0     		b	.L45
+ 1473              	.L46:
+ 277:App/STM32F4-Discovery/modbus_mk.c **** 		req[req_length++] = src[i] >> 8;
+ 1474              		.loc 1 277 0 discriminator 2
+ 1475 0094 D7F82032 		ldr	r3, [r7, #544]
+ 1476 0098 5A1C     		adds	r2, r3, #1
+ 1477 009a C7F82022 		str	r2, [r7, #544]
+ 1478 009e D7F82422 		ldr	r2, [r7, #548]
+ 1479 00a2 5200     		lsls	r2, r2, #1
+ 1480 00a4 391D     		adds	r1, r7, #4
+ 1481 00a6 0968     		ldr	r1, [r1]
+ 1482 00a8 0A44     		add	r2, r2, r1
+ 1483 00aa 1288     		ldrh	r2, [r2]
+ 1484 00ac 120A     		lsrs	r2, r2, #8
+ 1485 00ae 92B2     		uxth	r2, r2
+ 1486 00b0 D1B2     		uxtb	r1, r2
+ 1487 00b2 07F11402 		add	r2, r7, #20
+ 1488 00b6 D154     		strb	r1, [r2, r3]
+ 278:App/STM32F4-Discovery/modbus_mk.c ****         	req[req_length++] = src[i] & 0x00ff;
+ 1489              		.loc 1 278 0 discriminator 2
+ 1490 00b8 D7F82032 		ldr	r3, [r7, #544]
+ 1491 00bc 5A1C     		adds	r2, r3, #1
+ 1492 00be C7F82022 		str	r2, [r7, #544]
+ 1493 00c2 D7F82422 		ldr	r2, [r7, #548]
+ 1494 00c6 5200     		lsls	r2, r2, #1
+ 1495 00c8 391D     		adds	r1, r7, #4
+ 1496 00ca 0968     		ldr	r1, [r1]
+ 1497 00cc 0A44     		add	r2, r2, r1
+ 1498 00ce 1288     		ldrh	r2, [r2]
+ 1499 00d0 D1B2     		uxtb	r1, r2
+ 1500 00d2 07F11402 		add	r2, r7, #20
+ 1501 00d6 D154     		strb	r1, [r2, r3]
+ 276:App/STM32F4-Discovery/modbus_mk.c ****     	for (i = 0; i < nb; i++) {
+ 1502              		.loc 1 276 0 discriminator 2
+ 1503 00d8 D7F82432 		ldr	r3, [r7, #548]
+ 1504 00dc 0133     		adds	r3, r3, #1
+ 1505 00de C7F82432 		str	r3, [r7, #548]
+ 1506              	.L45:
+ 276:App/STM32F4-Discovery/modbus_mk.c ****     	for (i = 0; i < nb; i++) {
+ 1507              		.loc 1 276 0 is_stmt 0 discriminator 1
+ 1508 00e2 07F10803 		add	r3, r7, #8
+ 1509 00e6 D7F82422 		ldr	r2, [r7, #548]
+ 1510 00ea 1B68     		ldr	r3, [r3]
+ 1511 00ec 9A42     		cmp	r2, r3
+ 1512 00ee D1DB     		blt	.L46
+ 279:App/STM32F4-Discovery/modbus_mk.c ****     	}
+ 280:App/STM32F4-Discovery/modbus_mk.c **** 
+ 281:App/STM32F4-Discovery/modbus_mk.c **** 	uint16_t crc = crc16(req, req_length);
+ 1513              		.loc 1 281 0 is_stmt 1
+ 1514 00f0 D7F82032 		ldr	r3, [r7, #544]
+ 1515 00f4 9BB2     		uxth	r3, r3
+ 1516 00f6 07F11402 		add	r2, r7, #20
+ 1517 00fa 1046     		mov	r0, r2
+ 1518 00fc 1946     		mov	r1, r3
+ 1519 00fe FFF7FEFF 		bl	crc16
+ 1520 0102 0346     		mov	r3, r0
+ 1521 0104 A7F81A32 		strh	r3, [r7, #538]	@ movhi
+ 282:App/STM32F4-Discovery/modbus_mk.c **** 
+ 283:App/STM32F4-Discovery/modbus_mk.c **** 	req[req_length++] = crc >> 8; 
+ 1522              		.loc 1 283 0
+ 1523 0108 D7F82032 		ldr	r3, [r7, #544]
+ 1524 010c 5A1C     		adds	r2, r3, #1
+ 1525 010e C7F82022 		str	r2, [r7, #544]
+ 1526 0112 B7F81A22 		ldrh	r2, [r7, #538]
+ 1527 0116 120A     		lsrs	r2, r2, #8
+ 1528 0118 92B2     		uxth	r2, r2
+ 1529 011a D1B2     		uxtb	r1, r2
+ 1530 011c 07F11402 		add	r2, r7, #20
+ 1531 0120 D154     		strb	r1, [r2, r3]
+ 284:App/STM32F4-Discovery/modbus_mk.c **** 	req[req_length++] = crc & 0x00ff;
+ 1532              		.loc 1 284 0
+ 1533 0122 D7F82032 		ldr	r3, [r7, #544]
+ 1534 0126 5A1C     		adds	r2, r3, #1
+ 1535 0128 C7F82022 		str	r2, [r7, #544]
+ 1536 012c B7F81A22 		ldrh	r2, [r7, #538]	@ movhi
+ 1537 0130 D1B2     		uxtb	r1, r2
+ 1538 0132 07F11402 		add	r2, r7, #20
+ 1539 0136 D154     		strb	r1, [r2, r3]
+ 285:App/STM32F4-Discovery/modbus_mk.c **** 
+ 286:App/STM32F4-Discovery/modbus_mk.c **** 
+ 287:App/STM32F4-Discovery/modbus_mk.c **** 	/* write request  to modbus line */
+ 288:App/STM32F4-Discovery/modbus_mk.c **** 	rc = write_modbus( req, req_length); 
+ 1540              		.loc 1 288 0
+ 1541 0138 07F11403 		add	r3, r7, #20
+ 1542 013c 1846     		mov	r0, r3
+ 1543 013e D7F82012 		ldr	r1, [r7, #544]
+ 1544 0142 FFF7FEFF 		bl	write_modbus
+ 1545 0146 C7F81402 		str	r0, [r7, #532]
+ 289:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 290:App/STM32F4-Discovery/modbus_mk.c **** 	/* if req was sent, read from modbus line */ 
+ 291:App/STM32F4-Discovery/modbus_mk.c **** 
+ 292:App/STM32F4-Discovery/modbus_mk.c **** 	if (rc > 0) read_modbus(req, 8);
+ 1546              		.loc 1 292 0
+ 1547 014a D7F81432 		ldr	r3, [r7, #532]
+ 1548 014e 002B     		cmp	r3, #0
+ 1549 0150 05DD     		ble	.L47
+ 1550              		.loc 1 292 0 is_stmt 0 discriminator 1
+ 1551 0152 07F11403 		add	r3, r7, #20
+ 1552 0156 1846     		mov	r0, r3
+ 1553 0158 0821     		movs	r1, #8
+ 1554 015a FFF7FEFF 		bl	read_modbus
+ 1555              	.L47:
+ 293:App/STM32F4-Discovery/modbus_mk.c **** 	return rc;
+ 1556              		.loc 1 293 0 is_stmt 1
+ 1557 015e D7F81432 		ldr	r3, [r7, #532]
+ 294:App/STM32F4-Discovery/modbus_mk.c **** }
+ 1558              		.loc 1 294 0
+ 1559 0162 1846     		mov	r0, r3
+ 1560 0164 07F50A77 		add	r7, r7, #552
+ 1561 0168 BD46     		mov	sp, r7
+ 1562              		@ sp needed
+ 1563 016a 80BD     		pop	{r7, pc}
+ 1564              		.cfi_endproc
+ 1565              	.LFE118:
+ 1567              		.section	.text.modbus_RR,"ax",%progbits
+ 1568              		.align	2
+ 1569              		.global	modbus_RR
+ 1570              		.thumb
+ 1571              		.thumb_func
+ 1573              	modbus_RR:
+ 1574              	.LFB119:
+ 295:App/STM32F4-Discovery/modbus_mk.c **** 
+ 296:App/STM32F4-Discovery/modbus_mk.c **** 
+ 297:App/STM32F4-Discovery/modbus_mk.c **** /* Read the values from the array to the registers of the remote device */
+ 298:App/STM32F4-Discovery/modbus_mk.c **** int modbus_RR( int address, int nb, uint16_t *src)
+ 299:App/STM32F4-Discovery/modbus_mk.c **** {
+ 1575              		.loc 1 299 0
+ 1576              		.cfi_startproc
+ 1577              		@ args = 0, pretend = 0, frame = 1064
+ 1578              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1579 0000 80B5     		push	{r7, lr}
+ 1580              	.LCFI27:
+ 1581              		.cfi_def_cfa_offset 8
+ 1582              		.cfi_offset 7, -8
+ 1583              		.cfi_offset 14, -4
+ 1584 0002 ADF5856D 		sub	sp, sp, #1064
+ 1585              	.LCFI28:
+ 1586              		.cfi_def_cfa_offset 1072
+ 1587 0006 00AF     		add	r7, sp, #0
+ 1588              	.LCFI29:
+ 1589              		.cfi_def_cfa_register 7
+ 1590 0008 07F10C03 		add	r3, r7, #12
+ 1591 000c 1860     		str	r0, [r3]
+ 1592 000e 07F10803 		add	r3, r7, #8
+ 1593 0012 1960     		str	r1, [r3]
+ 1594 0014 3B1D     		adds	r3, r7, #4
+ 1595 0016 1A60     		str	r2, [r3]
+ 300:App/STM32F4-Discovery/modbus_mk.c ****     	int rc;
+ 301:App/STM32F4-Discovery/modbus_mk.c ****     	int i;
+ 302:App/STM32F4-Discovery/modbus_mk.c ****     	int req_length;
+ 303:App/STM32F4-Discovery/modbus_mk.c **** 	int byte_count;
+ 304:App/STM32F4-Discovery/modbus_mk.c ****     	uint8_t req[REQ_MAX_LEN];
+ 305:App/STM32F4-Discovery/modbus_mk.c ****   	uint8_t rsp[REQ_MAX_LEN];
+ 306:App/STM32F4-Discovery/modbus_mk.c **** 
+ 307:App/STM32F4-Discovery/modbus_mk.c **** 	req[0] = 0x36; 
+ 1596              		.loc 1 307 0
+ 1597 0018 07F50473 		add	r3, r7, #528
+ 1598 001c 3622     		movs	r2, #54
+ 1599 001e 1A70     		strb	r2, [r3]
+ 308:App/STM32F4-Discovery/modbus_mk.c **** 	req[1] = 0x4;
+ 1600              		.loc 1 308 0
+ 1601 0020 07F50473 		add	r3, r7, #528
+ 1602 0024 0422     		movs	r2, #4
+ 1603 0026 5A70     		strb	r2, [r3, #1]
+ 309:App/STM32F4-Discovery/modbus_mk.c **** 	req[2] = address >> 8;
+ 1604              		.loc 1 309 0
+ 1605 0028 07F10C03 		add	r3, r7, #12
+ 1606 002c 1B68     		ldr	r3, [r3]
+ 1607 002e 1B12     		asrs	r3, r3, #8
+ 1608 0030 DAB2     		uxtb	r2, r3
+ 1609 0032 07F50473 		add	r3, r7, #528
+ 1610 0036 9A70     		strb	r2, [r3, #2]
+ 310:App/STM32F4-Discovery/modbus_mk.c **** 	req[3] = address & 0x00ff;
+ 1611              		.loc 1 310 0
+ 1612 0038 07F10C03 		add	r3, r7, #12
+ 1613 003c 1B68     		ldr	r3, [r3]
+ 1614 003e DAB2     		uxtb	r2, r3
+ 1615 0040 07F50473 		add	r3, r7, #528
+ 1616 0044 DA70     		strb	r2, [r3, #3]
+ 311:App/STM32F4-Discovery/modbus_mk.c **** 	req[4] = nb >> 8;
+ 1617              		.loc 1 311 0
+ 1618 0046 07F10803 		add	r3, r7, #8
+ 1619 004a 1B68     		ldr	r3, [r3]
+ 1620 004c 1B12     		asrs	r3, r3, #8
+ 1621 004e DAB2     		uxtb	r2, r3
+ 1622 0050 07F50473 		add	r3, r7, #528
+ 1623 0054 1A71     		strb	r2, [r3, #4]
+ 312:App/STM32F4-Discovery/modbus_mk.c **** 	req[5] = nb & 0x00ff; 
+ 1624              		.loc 1 312 0
+ 1625 0056 07F10803 		add	r3, r7, #8
+ 1626 005a 1B68     		ldr	r3, [r3]
+ 1627 005c DAB2     		uxtb	r2, r3
+ 1628 005e 07F50473 		add	r3, r7, #528
+ 1629 0062 5A71     		strb	r2, [r3, #5]
+ 313:App/STM32F4-Discovery/modbus_mk.c **** 	req_length = 6; 
+ 1630              		.loc 1 313 0
+ 1631 0064 0623     		movs	r3, #6
+ 1632 0066 C7F82034 		str	r3, [r7, #1056]
+ 314:App/STM32F4-Discovery/modbus_mk.c ****    	
+ 315:App/STM32F4-Discovery/modbus_mk.c **** 	byte_count = nb * 2;
+ 1633              		.loc 1 315 0
+ 1634 006a 07F10803 		add	r3, r7, #8
+ 1635 006e 1B68     		ldr	r3, [r3]
+ 1636 0070 5B00     		lsls	r3, r3, #1
+ 1637 0072 C7F81C34 		str	r3, [r7, #1052]
+ 316:App/STM32F4-Discovery/modbus_mk.c ****     	req[req_length++] = byte_count;
+ 1638              		.loc 1 316 0
+ 1639 0076 D7F82034 		ldr	r3, [r7, #1056]
+ 1640 007a 5A1C     		adds	r2, r3, #1
+ 1641 007c C7F82024 		str	r2, [r7, #1056]
+ 1642 0080 D7F81C24 		ldr	r2, [r7, #1052]
+ 1643 0084 D1B2     		uxtb	r1, r2
+ 1644 0086 07F50472 		add	r2, r7, #528
+ 1645 008a D154     		strb	r1, [r2, r3]
+ 317:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 318:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 319:App/STM32F4-Discovery/modbus_mk.c **** 	uint16_t crc = crc16(req, req_length);
+ 1646              		.loc 1 319 0
+ 1647 008c D7F82034 		ldr	r3, [r7, #1056]
+ 1648 0090 9BB2     		uxth	r3, r3
+ 1649 0092 07F50472 		add	r2, r7, #528
+ 1650 0096 1046     		mov	r0, r2
+ 1651 0098 1946     		mov	r1, r3
+ 1652 009a FFF7FEFF 		bl	crc16
+ 1653 009e 0346     		mov	r3, r0
+ 1654 00a0 A7F81A34 		strh	r3, [r7, #1050]	@ movhi
+ 320:App/STM32F4-Discovery/modbus_mk.c **** 
+ 321:App/STM32F4-Discovery/modbus_mk.c **** 	req[req_length++] = crc >> 8; 
+ 1655              		.loc 1 321 0
+ 1656 00a4 D7F82034 		ldr	r3, [r7, #1056]
+ 1657 00a8 5A1C     		adds	r2, r3, #1
+ 1658 00aa C7F82024 		str	r2, [r7, #1056]
+ 1659 00ae B7F81A24 		ldrh	r2, [r7, #1050]
+ 1660 00b2 120A     		lsrs	r2, r2, #8
+ 1661 00b4 92B2     		uxth	r2, r2
+ 1662 00b6 D1B2     		uxtb	r1, r2
+ 1663 00b8 07F50472 		add	r2, r7, #528
+ 1664 00bc D154     		strb	r1, [r2, r3]
+ 322:App/STM32F4-Discovery/modbus_mk.c **** 	req[req_length++] = crc & 0x00ff; 
+ 1665              		.loc 1 322 0
+ 1666 00be D7F82034 		ldr	r3, [r7, #1056]
+ 1667 00c2 5A1C     		adds	r2, r3, #1
+ 1668 00c4 C7F82024 		str	r2, [r7, #1056]
+ 1669 00c8 B7F81A24 		ldrh	r2, [r7, #1050]	@ movhi
+ 1670 00cc D1B2     		uxtb	r1, r2
+ 1671 00ce 07F50472 		add	r2, r7, #528
+ 1672 00d2 D154     		strb	r1, [r2, r3]
+ 323:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 324:App/STM32F4-Discovery/modbus_mk.c **** 	/* write request  to modbus line */
+ 325:App/STM32F4-Discovery/modbus_mk.c **** 	rc = write_modbus( req, req_length); 
+ 1673              		.loc 1 325 0
+ 1674 00d4 07F50473 		add	r3, r7, #528
+ 1675 00d8 1846     		mov	r0, r3
+ 1676 00da D7F82014 		ldr	r1, [r7, #1056]
+ 1677 00de FFF7FEFF 		bl	write_modbus
+ 1678 00e2 C7F81404 		str	r0, [r7, #1044]
+ 326:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 327:App/STM32F4-Discovery/modbus_mk.c **** 	if (rc < 0 ) return -1; 	
+ 1679              		.loc 1 327 0
+ 1680 00e6 D7F81434 		ldr	r3, [r7, #1044]
+ 1681 00ea 002B     		cmp	r3, #0
+ 1682 00ec 02DA     		bge	.L50
+ 1683              		.loc 1 327 0 is_stmt 0 discriminator 1
+ 1684 00ee 4FF0FF33 		mov	r3, #-1
+ 1685 00f2 40E0     		b	.L54
+ 1686              	.L50:
+ 328:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 329:App/STM32F4-Discovery/modbus_mk.c **** 	rc = read_modbus( rsp, nb*2 + 5);
+ 1687              		.loc 1 329 0 is_stmt 1
+ 1688 00f4 07F10803 		add	r3, r7, #8
+ 1689 00f8 1B68     		ldr	r3, [r3]
+ 1690 00fa 5B00     		lsls	r3, r3, #1
+ 1691 00fc 0533     		adds	r3, r3, #5
+ 1692 00fe 07F11002 		add	r2, r7, #16
+ 1693 0102 1046     		mov	r0, r2
+ 1694 0104 1946     		mov	r1, r3
+ 1695 0106 FFF7FEFF 		bl	read_modbus
+ 1696 010a C7F81404 		str	r0, [r7, #1044]
+ 330:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 331:App/STM32F4-Discovery/modbus_mk.c **** 	int offset = 2;
+ 1697              		.loc 1 331 0
+ 1698 010e 0223     		movs	r3, #2
+ 1699 0110 C7F81034 		str	r3, [r7, #1040]
+ 332:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 333:App/STM32F4-Discovery/modbus_mk.c **** 	for (i = 0; i < nb; i++) {
+ 1700              		.loc 1 333 0
+ 1701 0114 0023     		movs	r3, #0
+ 1702 0116 C7F82434 		str	r3, [r7, #1060]
+ 1703 011a 24E0     		b	.L52
+ 1704              	.L53:
+ 334:App/STM32F4-Discovery/modbus_mk.c ****             /* shift reg hi_byte to temp OR with lo_byte */
+ 335:App/STM32F4-Discovery/modbus_mk.c ****             src[i] = (rsp[offset + 2 + (i << 1)] << 8) |
+ 1705              		.loc 1 335 0 discriminator 2
+ 1706 011c D7F82434 		ldr	r3, [r7, #1060]
+ 1707 0120 5B00     		lsls	r3, r3, #1
+ 1708 0122 3A1D     		adds	r2, r7, #4
+ 1709 0124 1268     		ldr	r2, [r2]
+ 1710 0126 1344     		add	r3, r3, r2
+ 1711 0128 D7F81024 		ldr	r2, [r7, #1040]
+ 1712 012c 911C     		adds	r1, r2, #2
+ 1713 012e D7F82424 		ldr	r2, [r7, #1060]
+ 1714 0132 5200     		lsls	r2, r2, #1
+ 1715 0134 0A44     		add	r2, r2, r1
+ 1716 0136 07F11001 		add	r1, r7, #16
+ 1717 013a 8A5C     		ldrb	r2, [r1, r2]	@ zero_extendqisi2
+ 1718 013c 1202     		lsls	r2, r2, #8
+ 1719 013e 91B2     		uxth	r1, r2
+ 336:App/STM32F4-Discovery/modbus_mk.c ****                 rsp[offset + 3 + (i << 1)];
+ 1720              		.loc 1 336 0 discriminator 2
+ 1721 0140 D7F81024 		ldr	r2, [r7, #1040]
+ 1722 0144 D01C     		adds	r0, r2, #3
+ 1723 0146 D7F82424 		ldr	r2, [r7, #1060]
+ 1724 014a 5200     		lsls	r2, r2, #1
+ 1725 014c 0244     		add	r2, r2, r0
+ 1726 014e 07F11000 		add	r0, r7, #16
+ 1727 0152 825C     		ldrb	r2, [r0, r2]	@ zero_extendqisi2
+ 335:App/STM32F4-Discovery/modbus_mk.c ****             src[i] = (rsp[offset + 2 + (i << 1)] << 8) |
+ 1728              		.loc 1 335 0 discriminator 2
+ 1729 0154 0A43     		orrs	r2, r2, r1
+ 1730 0156 92B2     		uxth	r2, r2
+ 1731 0158 92B2     		uxth	r2, r2
+ 1732 015a 1A80     		strh	r2, [r3]	@ movhi
+ 333:App/STM32F4-Discovery/modbus_mk.c **** 	for (i = 0; i < nb; i++) {
+ 1733              		.loc 1 333 0 discriminator 2
+ 1734 015c D7F82434 		ldr	r3, [r7, #1060]
+ 1735 0160 0133     		adds	r3, r3, #1
+ 1736 0162 C7F82434 		str	r3, [r7, #1060]
+ 1737              	.L52:
+ 333:App/STM32F4-Discovery/modbus_mk.c **** 	for (i = 0; i < nb; i++) {
+ 1738              		.loc 1 333 0 is_stmt 0 discriminator 1
+ 1739 0166 07F10803 		add	r3, r7, #8
+ 1740 016a D7F82424 		ldr	r2, [r7, #1060]
+ 1741 016e 1B68     		ldr	r3, [r3]
+ 1742 0170 9A42     		cmp	r2, r3
+ 1743 0172 D3DB     		blt	.L53
+ 337:App/STM32F4-Discovery/modbus_mk.c **** 		
+ 338:App/STM32F4-Discovery/modbus_mk.c ****         }
+ 339:App/STM32F4-Discovery/modbus_mk.c **** 
+ 340:App/STM32F4-Discovery/modbus_mk.c **** 	return 0;
+ 1744              		.loc 1 340 0 is_stmt 1
+ 1745 0174 0023     		movs	r3, #0
+ 1746              	.L54:
+ 341:App/STM32F4-Discovery/modbus_mk.c **** }
+ 1747              		.loc 1 341 0
+ 1748 0176 1846     		mov	r0, r3
+ 1749 0178 07F58567 		add	r7, r7, #1064
+ 1750 017c BD46     		mov	sp, r7
+ 1751              		@ sp needed
+ 1752 017e 80BD     		pop	{r7, pc}
+ 1753              		.cfi_endproc
+ 1754              	.LFE119:
+ 1756              		.section	.text.modbusMOTOR_task,"ax",%progbits
+ 1757              		.align	2
+ 1758              		.global	modbusMOTOR_task
+ 1759              		.thumb
+ 1760              		.thumb_func
+ 1762              	modbusMOTOR_task:
+ 1763              	.LFB120:
+ 342:App/STM32F4-Discovery/modbus_mk.c **** 
+ 343:App/STM32F4-Discovery/modbus_mk.c **** void modbusMOTOR_task(void * pvParameters)
+ 344:App/STM32F4-Discovery/modbus_mk.c **** {
+ 1764              		.loc 1 344 0
+ 1765              		.cfi_startproc
+ 1766              		@ args = 0, pretend = 0, frame = 56
+ 1767              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1768 0000 80B5     		push	{r7, lr}
+ 1769              	.LCFI30:
+ 1770              		.cfi_def_cfa_offset 8
+ 1771              		.cfi_offset 7, -8
+ 1772              		.cfi_offset 14, -4
+ 1773 0002 8EB0     		sub	sp, sp, #56
+ 1774              	.LCFI31:
+ 1775              		.cfi_def_cfa_offset 64
+ 1776 0004 00AF     		add	r7, sp, #0
+ 1777              	.LCFI32:
+ 1778              		.cfi_def_cfa_register 7
+ 1779 0006 7860     		str	r0, [r7, #4]
+ 345:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 346:App/STM32F4-Discovery/modbus_mk.c **** 
+ 347:App/STM32F4-Discovery/modbus_mk.c **** 	uint8_t dest[8];
+ 348:App/STM32F4-Discovery/modbus_mk.c **** 	uint8_t src[4];
+ 349:App/STM32F4-Discovery/modbus_mk.c **** 	uint16_t tab_reg[10];
+ 350:App/STM32F4-Discovery/modbus_mk.c **** 	uint16_t spd[5]; 
+ 351:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 352:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 353:App/STM32F4-Discovery/modbus_mk.c **** 	src[0]=1; src[1]=1; src[2]=1; src[3]=1;
+ 1780              		.loc 1 353 0
+ 1781 0008 0123     		movs	r3, #1
+ 1782 000a 87F82830 		strb	r3, [r7, #40]
+ 1783 000e 0123     		movs	r3, #1
+ 1784 0010 87F82930 		strb	r3, [r7, #41]
+ 1785 0014 0123     		movs	r3, #1
+ 1786 0016 87F82A30 		strb	r3, [r7, #42]
+ 1787 001a 0123     		movs	r3, #1
+ 1788 001c 87F82B30 		strb	r3, [r7, #43]
+ 354:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 355:App/STM32F4-Discovery/modbus_mk.c **** 	spd[0]=2000;spd[1]=0;spd[2]=2250;spd[3]=15;spd[4]=15;
+ 1789              		.loc 1 355 0
+ 1790 0020 4FF4FA63 		mov	r3, #2000
+ 1791 0024 3B81     		strh	r3, [r7, #8]	@ movhi
+ 1792 0026 0023     		movs	r3, #0
+ 1793 0028 7B81     		strh	r3, [r7, #10]	@ movhi
+ 1794 002a 40F6CA03 		movw	r3, #2250
+ 1795 002e BB81     		strh	r3, [r7, #12]	@ movhi
+ 1796 0030 0F23     		movs	r3, #15
+ 1797 0032 FB81     		strh	r3, [r7, #14]	@ movhi
+ 1798 0034 0F23     		movs	r3, #15
+ 1799 0036 3B82     		strh	r3, [r7, #16]	@ movhi
+ 356:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 357:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 358:App/STM32F4-Discovery/modbus_mk.c **** 	if ( modbus_RIB( 0,8,dest) < 0 )
+ 1800              		.loc 1 358 0
+ 1801 0038 07F12C03 		add	r3, r7, #44
+ 1802 003c 0020     		movs	r0, #0
+ 1803 003e 0821     		movs	r1, #8
+ 1804 0040 1A46     		mov	r2, r3
+ 1805 0042 FFF7FEFF 		bl	modbus_RIB
+ 1806 0046 0346     		mov	r3, r0
+ 1807 0048 002B     		cmp	r3, #0
+ 1808 004a 02DA     		bge	.L56
+ 359:App/STM32F4-Discovery/modbus_mk.c **** 	{
+ 360:App/STM32F4-Discovery/modbus_mk.c **** 		 vTaskDelete( NULL );;
+ 1809              		.loc 1 360 0
+ 1810 004c 0020     		movs	r0, #0
+ 1811 004e FFF7FEFF 		bl	vTaskDelete
+ 1812              	.L56:
+ 361:App/STM32F4-Discovery/modbus_mk.c **** 	}
+ 362:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 363:App/STM32F4-Discovery/modbus_mk.c **** 	modbus_RR(0,10,tab_reg);
+ 1813              		.loc 1 363 0
+ 1814 0052 07F11403 		add	r3, r7, #20
+ 1815 0056 0020     		movs	r0, #0
+ 1816 0058 0A21     		movs	r1, #10
+ 1817 005a 1A46     		mov	r2, r3
+ 1818 005c FFF7FEFF 		bl	modbus_RR
+ 364:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 365:App/STM32F4-Discovery/modbus_mk.c **** 	modbus_WIB( 0, 3, src);
+ 1819              		.loc 1 365 0
+ 1820 0060 07F12803 		add	r3, r7, #40
+ 1821 0064 0020     		movs	r0, #0
+ 1822 0066 0321     		movs	r1, #3
+ 1823 0068 1A46     		mov	r2, r3
+ 1824 006a FFF7FEFF 		bl	modbus_WIB
+ 366:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 367:App/STM32F4-Discovery/modbus_mk.c **** 	modbus_WR( 0, 5, spd);
+ 1825              		.loc 1 367 0
+ 1826 006e 07F10803 		add	r3, r7, #8
+ 1827 0072 0020     		movs	r0, #0
+ 1828 0074 0521     		movs	r1, #5
+ 1829 0076 1A46     		mov	r2, r3
+ 1830 0078 FFF7FEFF 		bl	modbus_WR
+ 368:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 369:App/STM32F4-Discovery/modbus_mk.c **** 	const portTickType xDelay = 500 / portTICK_RATE_MS;
+ 1831              		.loc 1 369 0
+ 1832 007c 4FF4FA73 		mov	r3, #500
+ 1833 0080 7B63     		str	r3, [r7, #52]
+ 1834              	.L57:
+ 370:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 371:App/STM32F4-Discovery/modbus_mk.c **** 	for (;;)
+ 372:App/STM32F4-Discovery/modbus_mk.c **** 	{
+ 373:App/STM32F4-Discovery/modbus_mk.c **** 		
+ 374:App/STM32F4-Discovery/modbus_mk.c **** 		modbus_RR(0, 10, tab_reg);
+ 1835              		.loc 1 374 0 discriminator 1
+ 1836 0082 07F11403 		add	r3, r7, #20
+ 1837 0086 0020     		movs	r0, #0
+ 1838 0088 0A21     		movs	r1, #10
+ 1839 008a 1A46     		mov	r2, r3
+ 1840 008c FFF7FEFF 		bl	modbus_RR
+ 375:App/STM32F4-Discovery/modbus_mk.c **** 		vTaskDelay( xDelay );
+ 1841              		.loc 1 375 0 discriminator 1
+ 1842 0090 786B     		ldr	r0, [r7, #52]
+ 1843 0092 FFF7FEFF 		bl	vTaskDelay
+ 376:App/STM32F4-Discovery/modbus_mk.c **** 	
+ 377:App/STM32F4-Discovery/modbus_mk.c **** 	}
+ 1844              		.loc 1 377 0 discriminator 1
+ 1845 0096 F4E7     		b	.L57
+ 1846              		.cfi_endproc
+ 1847              	.LFE120:
+ 1849              		.section	.bss.cnt.9176,"aw",%nobits
+ 1852              	cnt.9176:
+ 1853 0000 00       		.space	1
+ 1854              		.text
+ 1855              	.Letext0:
+ 1856              		.file 2 "/Users/maticknap/ARM/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/_default_
+ 1857              		.file 3 "/Users/maticknap/ARM/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/stdint.h"
+ 1858              		.file 4 "App/STM32F4-Discovery/Libraries/CMSIS/ST/STM32F4xx/Include/stm32f4xx.h"
+ 1859              		.file 5 "App/STM32F4-Discovery/Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h"
+ 1860              		.file 6 "App/STM32F4-Discovery/Libraries/STM32F4xx_StdPeriph_Driver/inc/misc.h"
+ 1861              		.file 7 "App/STM32F4-Discovery/Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_usart.h"
+ 1862              		.file 8 "Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 1863              		.file 9 "App/STM32F4-Discovery/modbus_mk.h"
+ 1864              		.file 10 "App/STM32F4-Discovery/Libraries/CMSIS/Include/core_cm4.h"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 modbus_mk.c
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:20     .rodata.table_crc_hi:0000000000000000 $d
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:23     .rodata.table_crc_hi:0000000000000000 table_crc_hi
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:281    .rodata.table_crc_lo:0000000000000000 $d
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:284    .rodata.table_crc_lo:0000000000000000 table_crc_lo
+                            *COM*:0000000000000004 fd
+                            *COM*:0000000000000081 received_string
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:544    .text.init_USART1:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:549    .text.init_USART1:0000000000000000 init_USART1
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:661    .text.init_USART1:00000000000000a4 $d
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:667    .text.USART_puts:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:672    .text.USART_puts:0000000000000000 USART_puts
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:727    .text.USART_puts:000000000000003c $d
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:732    .text.USART1_IRQHandler:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:737    .text.USART1_IRQHandler:0000000000000000 USART1_IRQHandler
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:807    .text.USART1_IRQHandler:0000000000000054 $d
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1852   .bss.cnt.9176:0000000000000000 cnt.9176
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:814    .text.crc16:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:819    .text.crc16:0000000000000000 crc16
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:897    .text.crc16:0000000000000064 $d
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:903    .text.write_modbus:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:908    .text.write_modbus:0000000000000000 write_modbus
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:942    .text.read_modbus:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:947    .text.read_modbus:0000000000000000 read_modbus
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1003   .text.read_modbus:0000000000000040 $d
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1008   .text.modbus_RIB:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1013   .text.modbus_RIB:0000000000000000 modbus_RIB
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1139   .text.modbus_WIB:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1144   .text.modbus_WIB:0000000000000000 modbus_WIB
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1391   .text.modbus_WR:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1396   .text.modbus_WR:0000000000000000 modbus_WR
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1568   .text.modbus_RR:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1573   .text.modbus_RR:0000000000000000 modbus_RR
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1757   .text.modbusMOTOR_task:0000000000000000 $t
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1762   .text.modbusMOTOR_task:0000000000000000 modbusMOTOR_task
+/var/folders/55/hyqmw0c94z570kz3rqrpw4jc0000gn/T//cciBjDNp.s:1853   .bss.cnt.9176:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+RCC_APB2PeriphClockCmd
+RCC_AHB1PeriphClockCmd
+GPIO_Init
+GPIO_PinAFConfig
+USART_Init
+USART_ITConfig
+NVIC_Init
+USART_Cmd
+USART_SendData
+USART_GetITStatus
+vTaskDelete
+vTaskDelay
