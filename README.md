@@ -1,7 +1,7 @@
-ECHO_SERVER_NODMA
+MOTOR-FREERTOS
 =================
 
-Echo server provide simple TCP server with echo output. 
+Motor provide simple control of motor via USART 
 
 1. Compile project 
 
